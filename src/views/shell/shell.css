@@ -316,6 +316,13 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   min-height: auto;
 }
 
+.shell-version-label {
+  margin-top: 6px;
+  font-size: 10.5px;
+  color: var(--shell-muted);
+  text-align: center;
+}
+
 .shell-language-switcher {
   display: flex;
   align-items: center;

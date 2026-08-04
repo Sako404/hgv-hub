@@ -5,6 +5,7 @@ import WorkspaceSwitcher from "./WorkspaceSwitcher.jsx";
 import NavGroup from "./NavGroup.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import LogoutButton from "./LogoutButton.jsx";
+import VersionLabel from "./VersionLabel.jsx";
 
 export default function Sidebar({ collapsed, onToggleCollapsed, mobileOpen, switcher, groups }) {
   const { t } = useTranslation("common");
@@ -35,6 +36,7 @@ export default function Sidebar({ collapsed, onToggleCollapsed, mobileOpen, swit
       <div className="shell-sidebar-settings">
         <LanguageSwitcher />
         <LogoutButton />
+        <VersionLabel />
       </div>
 
       <div className="shell-sidebar-footer">
