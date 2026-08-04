@@ -53,6 +53,7 @@ services:
       - ${REPO_HOST_PATH:-.}:${REPO_HOST_PATH:-.}
     environment:
       REPO_HOST_PATH: ${REPO_HOST_PATH:-.}
+      COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-}
     restart: unless-stopped
 
 volumes:

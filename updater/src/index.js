@@ -16,6 +16,19 @@ const PORT = process.env.PORT ?? 4000;
 // resolved by that host daemon, not by anything inside this container.
 const REPO_PATH = process.env.REPO_HOST_PATH ?? "/repo";
 
+// Plain `docker compose` derives its project name from the current
+// directory name by default — fine for a plain-compose deployment,
+// but WRONG when the real running stack was actually created under a
+// different project name (e.g. TrueNAS's "Custom App" system runs
+// everything under `ix-<app_name>`, not the repo directory's own
+// name). Without this, `docker compose up -d` here creates a second,
+// independent stack that collides with the real one on host ports
+// instead of updating it. Must be set explicitly for those
+// deployments — see docs/BACKEND_SELF_HOSTING.md.
+const COMPOSE_PROJECT_FLAG = process.env.COMPOSE_PROJECT_NAME
+  ? `-p ${process.env.COMPOSE_PROJECT_NAME}`
+  : "";
+
 // The bind-mounted repo is owned by the host user, not whatever user
 // this container runs as — git's ownership-safety check (correctly)
 // refuses to operate on it otherwise. Wildcard is fine here: this
@@ -33,8 +46,8 @@ function runUpdate() {
     // previous update), never something worth preserving over actually
     // applying the release the admin just confirmed.
     'git checkout -f "$LATEST_TAG"',
-    "docker compose build",
-    "docker compose up -d",
+    `docker compose ${COMPOSE_PROJECT_FLAG} build`,
+    `docker compose ${COMPOSE_PROJECT_FLAG} up -d`,
   ].join(" && ");
 
   exec(cmd, { shell: "/bin/sh" }, (err, stdout, stderr) => {
