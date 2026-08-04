@@ -18,6 +18,7 @@ import DefectsApp from "../management/DefectsApp.jsx";
 import TransportManagerApp from "../management/TransportManagerApp.jsx";
 import Sidebar from "./Sidebar.jsx";
 import MobileDrawer from "./MobileDrawer.jsx";
+import UpdateBanner from "./UpdateBanner.jsx";
 import { useSidebarCollapsed } from "./useSidebarCollapsed.js";
 
 /**
@@ -179,6 +180,7 @@ export default function AppShell() {
         groups={groups}
       />
       <main className="shell-main">
+        <UpdateBanner />
         {activeView?.kind === "company" ? (
           companyTab === "organisations" ? (
             <OrganisationsApp workspace={activeView.workspace} db={db} />

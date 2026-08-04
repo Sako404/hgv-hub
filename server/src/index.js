@@ -6,6 +6,8 @@ import { seedDefaultComplianceProfile } from "./db/seed.js";
 import collectionsRoutes from "./routes/collections.js";
 import atomicRoutes from "./routes/atomic.js";
 import authRoutes from "./routes/auth.js";
+import updatesRoutes from "./routes/updates.js";
+import { RUNNING_VERSION } from "./services/updateService.js";
 
 export async function buildApp() {
   const fastify = Fastify({ logger: process.env.NODE_ENV !== "test" });
@@ -25,8 +27,9 @@ export async function buildApp() {
   await fastify.register(authRoutes);
   await fastify.register(collectionsRoutes);
   await fastify.register(atomicRoutes);
+  await fastify.register(updatesRoutes);
 
-  fastify.get("/api/health", async () => ({ ok: true }));
+  fastify.get("/api/health", async () => ({ ok: true, version: RUNNING_VERSION }));
 
   return fastify;
 }

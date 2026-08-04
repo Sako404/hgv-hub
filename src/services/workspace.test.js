@@ -19,6 +19,22 @@ describe("workspaceService — solo driver and company membership", () => {
     expect(session.personalWorkspace.id).toBe(workspaceId);
     expect(session.orgMemberships).toHaveLength(0);
     expect(session.needsSwitcher).toBe(false);
+    // A solo driver holds `owner` in their own personal workspace (per
+    // ensurePersonalWorkspace/migration 002) — they should be able to
+    // manage their own server, even though needsSwitcher stays false.
+    expect(session.canManageServer).toBe(true);
+  });
+
+  it("canManageServer is false for a driver-only membership with no owner/admin role anywhere", async () => {
+    const { db } = await createTestDb();
+    const personId = newId("person");
+    await db.people.insert({ id: personId, name: "Driver Only", email: null, createdAt: "now" });
+    const workspaceId = newId("workspace");
+    await db.workspaces.insert({ id: workspaceId, kind: "agency", name: "Some Agency", ownerPersonId: null, createdAt: "now" });
+    await db.memberships.insert({ id: newId("membership"), workspaceId, personId, roles: ["driver"], createdAt: "now" });
+
+    const session = await resolveSession(personId, db);
+    expect(session.canManageServer).toBe(false);
   });
 
   it("property 2: a driver can belong to a company workspace", async () => {
