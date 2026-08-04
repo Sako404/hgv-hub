@@ -37,8 +37,17 @@ export function SessionProvider({ db, apiBaseUrl, children }) {
     if (!apiMode) return;
     let cancelled = false;
     fetchCurrentSession(apiBaseUrl)
-      .then((result) => {
-        if (!cancelled) setAuthPersonId(result?.personId ?? null);
+      .then(async (result) => {
+        const personId = result?.personId ?? null;
+        if (personId) {
+          // Self-healing: a returning session might belong to an account
+          // whose personal-workspace provisioning never completed (e.g.
+          // the browser closed mid-register, before this same step ran
+          // there) — idempotent, so safe to re-check on every load.
+          const person = await db.people.getById(personId);
+          if (person) await ensurePersonalWorkspace(person, db);
+        }
+        if (!cancelled) setAuthPersonId(personId);
       })
       .finally(() => {
         if (!cancelled) setAuthChecked(true);
@@ -46,18 +55,22 @@ export function SessionProvider({ db, apiBaseUrl, children }) {
     return () => {
       cancelled = true;
     };
-    // apiBaseUrl is fixed for the lifetime of a build (VITE_API_BASE_URL) —
-    // this only ever needs to run once, on mount.
+    // apiBaseUrl/db are fixed for the lifetime of a build/session — this
+    // only ever needs to run once, on mount.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiMode]);
 
   const login = useCallback(
     async (email, password) => {
       const result = await loginAccount(apiBaseUrl, { email, password });
+      // Same self-healing as the mount check above — an existing account
+      // logging in for the first time since an interrupted registration
+      // must still end up with a personal workspace.
+      await ensurePersonalWorkspace(result.person, db);
       setAuthPersonId(result.person.id);
       return result;
     },
-    [apiBaseUrl]
+    [apiBaseUrl, db]
   );
   const register = useCallback(
     async (email, password, name) => {
