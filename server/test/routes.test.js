@@ -30,7 +30,7 @@ describe("generic collection + atomic routes — against a real local Postgres",
     const app = await buildApp();
     const res = await app.inject({ method: "GET", url: "/api/health" });
     expect(res.statusCode).toBe(200);
-    expect(res.json()).toEqual({ ok: true });
+    expect(res.json()).toEqual({ ok: true, version: expect.any(String) });
     await app.close();
   });
 

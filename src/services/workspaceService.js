@@ -1,5 +1,15 @@
 export const MANAGER_ROLES = ["owner", "admin", "manager", "dispatcher", "payroll", "transport_manager"];
 
+// Deliberately narrower than MANAGER_ROLES and deliberately checked
+// across ALL memberships including the personal workspace (unlike
+// managerialMemberships below, which excludes it so the company
+// switcher stays hidden for a solo driver) — server-update management
+// is about who administers THIS deployment, and a solo driver's own
+// personal-workspace `owner` role (granted to every account by
+// ensurePersonalWorkspace) is exactly who that is for a single-tenant
+// self-hosted instance.
+const SERVER_MANAGER_ROLES = ["owner", "admin"];
+
 /**
  * @param {string} personId
  * @param {ReturnType<typeof import('../storage/db.js').createDb>} db
@@ -30,11 +40,13 @@ export async function resolveSession(personId, db) {
   const managerialMemberships = orgMemberships.filter((m) =>
     m.roles.some((r) => MANAGER_ROLES.includes(r))
   );
+  const canManageServer = memberships.some((m) => m.roles.some((r) => SERVER_MANAGER_ROLES.includes(r)));
   return {
     personId,
     personalWorkspace,
     orgMemberships,
     managerialMemberships,
     needsSwitcher: managerialMemberships.length > 0,
+    canManageServer,
   };
 }

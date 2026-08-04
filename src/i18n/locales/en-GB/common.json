@@ -32,6 +32,11 @@
   "workspaceSwitcher": {
     "label": "Switch workspace"
   },
+  "update": {
+    "available": "Update available: v{{version}}",
+    "confirm": "Update now",
+    "applying": "Updating…"
+  },
   "language": {
     "label": "Language",
     "en-GB": "English",

@@ -93,13 +93,15 @@ export function SessionProvider({ db, apiBaseUrl, children }) {
       sessionLoading,
       switchPerson,
       apiMode,
+      apiBaseUrl,
       authChecked,
       isAuthenticated,
+      canManageServer: session?.canManageServer ?? false,
       login,
       register,
       logout,
     }),
-    [db, personId, session, sessionLoading, switchPerson, apiMode, authChecked, isAuthenticated, login, register, logout]
+    [db, personId, session, sessionLoading, switchPerson, apiMode, apiBaseUrl, authChecked, isAuthenticated, login, register, logout]
   );
 
   return <SessionCtx.Provider value={value}>{children}</SessionCtx.Provider>;

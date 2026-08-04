@@ -32,6 +32,11 @@
   "workspaceSwitcher": {
     "label": "Przełącz workspace"
   },
+  "update": {
+    "available": "Dostępna aktualizacja: v{{version}}",
+    "confirm": "Aktualizuj teraz",
+    "applying": "Aktualizowanie…"
+  },
   "language": {
     "label": "Język",
     "en-GB": "Angielski",

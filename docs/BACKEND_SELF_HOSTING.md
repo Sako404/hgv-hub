@@ -16,12 +16,14 @@ Use this guide if you want:
 
 ## What gets installed
 
-Three containers, via Docker Compose:
+Four containers, via Docker Compose:
 - `postgres` — the database, with a named volume so data survives
   container recreation.
 - `server` — the Fastify API (auth, all data access).
 - `client` — the React app, pre-built as static files and served by
   nginx, with the API's address baked in at build time.
+- `updater` — a small sidecar that applies self-updates (see "Staying
+  up to date" below). No published port; only `server` can reach it.
 
 ## Setup
 
@@ -36,6 +38,10 @@ Three containers, via Docker Compose:
    - Set `CORS_ORIGIN` to match the address you'll load the client
      from (its origin, not the API's) — the server rejects requests
      from anywhere not listed here.
+   - Set `REPO_HOST_PATH` to the absolute path where you cloned this
+     repo, as it exists **on the host** — required for self-updates to
+     work at all (see "Staying up to date"); get it wrong and updates
+     fail loudly rather than silently doing the wrong thing.
 3. `docker compose up -d --build`
 4. Open the client's address in a browser (`http://localhost:8080` by
    default). You'll land on a sign-in screen — register the first
@@ -72,7 +78,26 @@ cat backup.sql | docker compose exec -T postgres psql -U workingtime workingtime
 Take a backup before every upgrade (below), and on whatever schedule
 suits how much data loss you could tolerate.
 
-## Upgrade procedure
+## Staying up to date
+
+Once a day, the server checks the project's GitHub Releases for
+something newer than what's running. If you're signed in as an
+owner/admin of any workspace (including your own personal one — see
+`server/src/routes/updates.js`), you'll see a banner. Confirming it
+tells the `updater` sidecar to `git fetch`, check out the new tag, and
+rebuild — happens in the background, the app comes back up on its own
+once it's done.
+
+This requires `REPO_HOST_PATH` to be set correctly (see Setup) and
+your deployment to actually be a `git clone` of the public repo, not a
+one-off download — `git fetch`/`checkout` need real git history to
+pull from.
+
+## Manual upgrade procedure
+
+The self-update path above covers the common case; do this instead if
+you'd rather not wait for the automatic check, or the automatic path
+isn't set up:
 
 1. Back up (above).
 2. `git pull` (or however you're tracking releases).

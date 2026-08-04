@@ -14,7 +14,9 @@ services:
       retries: 10
 
   server:
-    build: ./server
+    build:
+      context: .
+      dockerfile: server/Dockerfile
     ports:
       - "${SERVER_PORT:-3001}:3001"
     environment:
@@ -36,6 +38,21 @@ services:
       - "${CLIENT_PORT:-8080}:80"
     depends_on:
       - server
+
+  # The only service with Docker socket access -- see updater/src/index.js
+  # for why, and docs/BACKEND_SELF_HOSTING.md for what REPO_HOST_PATH
+  # must be set to. Deliberately no `ports:` -- reachable only from
+  # `server` over this compose network, never from the host or internet.
+  updater:
+    build:
+      context: .
+      dockerfile: updater/Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${REPO_HOST_PATH:-.}:${REPO_HOST_PATH:-.}
+    environment:
+      REPO_HOST_PATH: ${REPO_HOST_PATH:-.}
+    restart: unless-stopped
 
 volumes:
   pgdata:
