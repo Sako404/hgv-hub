@@ -49,8 +49,14 @@ import { newId } from "../../domain/ids.js";
 // colours a category card shows. If any hard alert in the category
 // fired, or the budget is exhausted, it's "problem"; one remaining is
 // "warning"; otherwise "ok".
+// Only TRUE violations force the "problem" status — "longShiftOverThreshold"
+// fires on every long shift regardless of remaining budget (it's the
+// per-occurrence informational note, not a violation on its own; a driver
+// legally using their reduced-rest allowance is exactly what it's there
+// for), so it's deliberately excluded here, matching how extendedDriving/
+// reducedRest already only escalate on their own budget-exceeded code.
 const CATEGORY_ALERT_CODES = {
-  longShift: ["longShiftOverThreshold", "longShiftBudgetExceeded", "dailyDutyAbsoluteMaxExceeded"],
+  longShift: ["longShiftBudgetExceeded", "dailyDutyAbsoluteMaxExceeded"],
   extendedDriving: ["extendedDrivingBudgetExceeded", "drivingHardLimitExceeded"],
   reducedRest: ["reducedRestBudgetExceeded", "restBelowMinimum"],
 };
@@ -205,8 +211,14 @@ export default function DriverApp({ personId, homeWorkspaceId, db, tab, onTabCha
     [resolveRateCard, resolveLoads]
   );
 
+  // `now` passed explicitly so a driver who's had a proper qualifying
+  // rest but hasn't logged their next shift yet doesn't see stale
+  // counters/alerts from the closed cycle — see computeCompliance's own
+  // doc comment. Read fresh each render (not memo-tracked) like the
+  // rest of the screen's other "today" reads (e.g. todayKey below) —
+  // this only needs to be roughly current, not live-ticking.
   const compliance = useMemo(
-    () => computeCompliance(sortedShifts, complianceProfile),
+    () => computeCompliance(sortedShifts, complianceProfile, { now: new Date() }),
     [sortedShifts, complianceProfile]
   );
 
