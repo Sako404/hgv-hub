@@ -57,4 +57,13 @@ services:
     restart: unless-stopped
 
 volumes:
+  # Explicit, stable name — NOT derived from the compose project name
+  # (which COMPOSE_PROJECT_NAME above can change). Without this, adding
+  # or changing that variable silently points postgres at a brand new,
+  # empty volume instead of an existing deployment's real data, since
+  # Docker Compose's default volume naming is
+  # "<project-name>_<volume-key>". Found the hard way: switching a real
+  # TrueNAS deployment onto COMPOSE_PROJECT_NAME the first time did
+  # exactly this.
   pgdata:
+    name: hgv-hub_pgdata
