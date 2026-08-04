@@ -110,6 +110,11 @@ release's notes — none of the migrations that exist today require one.
 
 ## Troubleshooting
 
+- **Login/register appears to succeed, then everything says "Not
+  authenticated"**: you're almost certainly running over plain HTTP
+  with `COOKIE_SECURE=true` — a Secure cookie is silently never sent
+  back by the browser except over HTTPS. Leave `COOKIE_SECURE=false`
+  (the default) unless this is genuinely served over HTTPS.
 - **Client loads but every action fails / a permanent "Not
   authenticated"**: `VITE_API_BASE_URL` almost always doesn't match
   where the server is actually reachable from your browser, or
