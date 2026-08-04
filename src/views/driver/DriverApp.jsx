@@ -61,10 +61,13 @@ const CATEGORY_ALERT_CODES = {
   reducedRest: ["reducedRestBudgetExceeded", "restBelowMinimum"],
 };
 
+// "Problem" (red) is reserved for an actual violation — a true
+// budget-exceeded/hard-limit alert. Running out of budget (remaining
+// <= 1) is still fully legal on its own; it's a "warning" (yellow)
+// nudge that the allowance is low/exhausted, not a compliance failure.
 function complianceStatus(remaining, categoryCodes, alerts) {
   if (alerts.some((a) => categoryCodes.includes(a.code))) return "problem";
-  if (remaining <= 0) return "problem";
-  if (remaining === 1) return "warning";
+  if (remaining <= 1) return "warning";
   return "ok";
 }
 
