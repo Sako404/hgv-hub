@@ -1,0 +1,37 @@
+{
+  "new": {
+    "title": "New Vehicle Check",
+    "noVehicles": "No vehicles available to check yet — ask your company to add one.",
+    "vehicle": "Vehicle",
+    "odometer": "Odometer reading (miles)",
+    "noChecklist": "No checklist is configured for this vehicle's workspace yet.",
+    "pairedVehicle": "Paired trailer (optional)",
+    "noPairedVehicle": "No trailer — checking this vehicle alone",
+    "pairedVehicleHint": "Pairing a trailer walks the same checklist twice, once per vehicle, in one submission — any defects are recorded against the correct vehicle.",
+    "tractorSection": "Tractor unit",
+    "trailerSection": "Trailer",
+    "resultOk": "OK",
+    "resultDefect": "Defect",
+    "resultNotApplicable": "N/A",
+    "defectNotesPlaceholder": "Describe the defect",
+    "signOffName": "Your name (sign-off)",
+    "signOffHint": "Typed confirmation, not a captured signature — this confirms you personally carried out this check.",
+    "answerAllHint": "Mark every item OK, Defect, or N/A before saving.",
+    "save": "Save Check"
+  },
+  "history": {
+    "title": "Check History",
+    "empty": "No vehicle checks logged yet.",
+    "statusOk": "OK",
+    "statusDefects": "Defects found",
+    "statusDefectsResolved": "Defect resolved",
+    "showAllItems": "Show all items",
+    "defectStatus": {
+      "open": "Open",
+      "reported": "Reported",
+      "in_progress": "In progress",
+      "resolved": "Resolved"
+    },
+    "defectResolvedNote": "Resolved: {{notes}}"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "list": {
+    "title": "Work placements",
+    "subtitle_one": "{{count}} placement",
+    "subtitle_other": "{{count}} placements",
+    "empty": "No work placements yet.",
+    "addPlacement": "Add placement",
+    "driverCount_one": "{{count}} driver",
+    "driverCount_other": "{{count}} drivers",
+    "archiveConfirmTitle": "Archive this placement?",
+    "archiveConfirmBody": "It's hidden from new driver assignments; existing history is unaffected.",
+    "restoreConfirmTitle": "Restore this placement?",
+    "archiveBlocked_one": "Cannot archive — {{count}} driver is still assigned here. End their assignment first.",
+    "archiveBlocked_other": "Cannot archive — {{count}} drivers are still assigned here. End their assignments first.",
+    "archiveBlockedTitle": "Cannot archive this placement"
+  },
+  "form": {
+    "createTitle": "Add work placement",
+    "provider": "Provider",
+    "site": "Site",
+    "rateCard": "Rate card",
+    "effectiveFrom": "Effective from",
+    "selectPlaceholder": "Select…"
+  },
+  "detail": {
+    "backToList": "Back to work placements",
+    "rateCardLabel": "Rate card",
+    "activeDrivers_one": "{{count}} driver assigned",
+    "activeDrivers_other": "{{count}} drivers assigned",
+    "noActiveDrivers": "No drivers currently assigned to this placement.",
+    "since": "Since {{date}}",
+    "endAction": "End",
+    "assignDriverLabel": "Assign a driver",
+    "noEligibleDrivers": "No drivers with a matching employment relationship are available to assign. Add one from the driver's Employment section first.",
+    "assignAction": "Assign",
+    "endedDrivers_one": "{{count}} past driver",
+    "endedDrivers_other": "{{count}} past drivers"
+  },
+  "relationshipTypes": {
+    "employee": "Employee",
+    "agency_worker": "Agency worker",
+    "subcontractor": "Subcontractor",
+    "self_employed": "Self-employed",
+    "other": "Other"
+  }
+}

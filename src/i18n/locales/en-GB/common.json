@@ -1,0 +1,68 @@
+{
+  "appName": "HGV HUB",
+  "nav": {
+    "primaryNavigation": "Primary navigation",
+    "mainNavigation": "Main navigation",
+    "driverGroup": "Driver",
+    "dashboard": "Dashboard",
+    "addShift": "Add Shift",
+    "payslip": "Payslip",
+    "history": "History",
+    "workplaces": "Workplaces",
+    "documents": "Documents",
+    "cpcTraining": "CPC Training",
+    "drivers": "Drivers",
+    "managementGroup": "Management",
+    "organisations": "Organisations",
+    "sites": "Sites",
+    "rateCards": "Rate Cards",
+    "vehicles": "Vehicles",
+    "checklistTemplates": "Checklists",
+    "workGroup": "Work",
+    "workPlacements": "Work placements",
+    "vehicleCheckGroup": "Vehicle Check",
+    "newCheck": "New Check",
+    "checkHistory": "Check History",
+    "vehicleSetupGroup": "Vehicle Setup",
+    "defects": "Defects",
+    "transportManagerGroup": "Transport Manager",
+    "transportManager": "Dashboard",
+    "signOut": "Sign out"
+  },
+  "workspaceSwitcher": {
+    "label": "Switch workspace"
+  },
+  "language": {
+    "label": "Language",
+    "en-GB": "English",
+    "pl-PL": "Polish"
+  },
+  "sidebar": {
+    "collapse": "Collapse",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar"
+  },
+  "mobileNav": {
+    "openNavigation": "Open navigation",
+    "closeNavigation": "Close navigation"
+  },
+  "backToDrivers": "Back to drivers",
+  "noActivePerson": "No active person found — migrations should have run on load.",
+  "loading": "Loading…",
+  "loadError": "Something went wrong loading this data.",
+  "storageUnavailable": "Storage is unavailable in this browser. Try a different browser or disable private browsing.",
+  "independentDriver": "Independent Driver",
+  "export": "Export",
+  "import": "Import",
+  "back": "Back",
+  "cancel": "Cancel",
+  "create": "Create",
+  "edit": "Edit",
+  "delete": "Delete",
+  "save": "Save",
+  "archive": "Archive",
+  "restore": "Restore",
+  "active": "Active",
+  "archived": "Archived",
+  "ok": "OK"
+}

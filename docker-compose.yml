@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-workingtime}
+      POSTGRES_USER: ${POSTGRES_USER:-workingtime}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-workingtime}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build: ./server
+    ports:
+      - "${SERVER_PORT:-3001}:3001"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-workingtime}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-workingtime}
+      PORT: 3001
+      NODE_ENV: production
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8080}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:3001}
+    ports:
+      - "${CLIENT_PORT:-8080}:80"
+    depends_on:
+      - server
+
+volumes:
+  pgdata:

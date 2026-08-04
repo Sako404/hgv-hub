@@ -1,0 +1,59 @@
+{
+  "drivers": {
+    "title": "Kierowcy",
+    "activeCount_one": "{{count}} aktywny kierowca · {{workspace}}",
+    "activeCount_few": "{{count}} aktywnych kierowców · {{workspace}}",
+    "activeCount_many": "{{count}} aktywnych kierowców · {{workspace}}",
+    "activeCount_other": "{{count}} aktywnych kierowców · {{workspace}}",
+    "shiftsLogged_one": "{{count}} zalogowana zmiana",
+    "shiftsLogged_few": "{{count}} zalogowane zmiany",
+    "shiftsLogged_many": "{{count}} zalogowanych zmian",
+    "shiftsLogged_other": "{{count}} zalogowanych zmian",
+    "empty": "Brak kierowców w tym workspace.",
+    "addDriver": "Dodaj kierowcę",
+    "editDriver": "Edytuj kierowcę",
+    "personSection": "Osoba",
+    "driverProfileSection": "Profil kierowcy",
+    "name": "Imię i nazwisko",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "displayName": "Wyświetlana nazwa (opcjonalnie)",
+    "email": "E-mail (opcjonalnie)",
+    "referenceNumber": "Numer referencyjny (opcjonalnie)",
+    "status": "Status",
+    "search": "Szukaj",
+    "searchPlaceholder": "Szukaj kierowców po imieniu…",
+    "noSearchResults": "Brak kierowców pasujących do wyszukiwania.",
+    "archiveConfirmTitle": "Zarchiwizować tego kierowcę?",
+    "archiveConfirmBody": "Zostanie usunięty z listy aktywnych kierowców tutaj — jego historia zmian, wypłat i raportów pozostaje bez zmian.",
+    "restoreConfirmTitle": "Przywróć kierowcę"
+  },
+  "drilldown": {
+    "readonlyNote": "Tylko podgląd — te same rekordy zmian co u kierowcy",
+    "allHours": "Godziny (wszystkie zmiany)",
+    "gross": "Gross",
+    "compliance": "Compliance",
+    "empty": "Brak zmian dla tego kierowcy."
+  },
+  "employment": {
+    "title": "Zatrudnienie",
+    "empty": "Brak zarejestrowanego zatrudnienia w tym workspace.",
+    "since": "Od {{date}}",
+    "ended": "Zakończono {{date}}",
+    "endAction": "Zakończ zatrudnienie",
+    "endBlocked_one": "Nie można zakończyć — {{count}} miejsce pracy jest nadal aktywne dla tego zatrudnienia. Najpierw je zakończ.",
+    "endBlocked_few": "Nie można zakończyć — {{count}} miejsca pracy są nadal aktywne dla tego zatrudnienia. Najpierw je zakończ.",
+    "endBlocked_many": "Nie można zakończyć — {{count}} miejsc pracy jest nadal aktywnych dla tego zatrudnienia. Najpierw je zakończ.",
+    "endBlocked_other": "Nie można zakończyć — {{count}} miejsc pracy jest nadal aktywnych dla tego zatrudnienia. Najpierw je zakończ.",
+    "placementsLabel": "Miejsca pracy",
+    "noPlacements": "Brak miejsc pracy."
+  },
+  "documents": {
+    "title": "Dokumenty",
+    "empty": "Ten kierowca nie śledzi jeszcze żadnych dokumentów.",
+    "readonlyNote": "Tylko podgląd — kierowca zarządza swoimi dokumentami samodzielnie."
+  },
+  "cpcTraining": {
+    "readonlyNote": "Tylko podgląd — kierowca sam zapisuje swoje szkolenia."
+  }
+}

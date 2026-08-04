@@ -1,0 +1,31 @@
+{
+  "status": {
+    "ok": "OK",
+    "warning": "Uwaga",
+    "problem": "Problem"
+  },
+  "categories": {
+    "longShift": "Wydłużone zmiany",
+    "extendedDriving": "Wydłużona jazda",
+    "reducedRest": "Skrócone odpoczynki"
+  },
+  "detailsToggle": "Wyjaśnienie zasad compliance",
+  "remaining_one": "Zostało {{count}}",
+  "remaining_few": "Zostało {{count}}",
+  "remaining_many": "Zostało {{count}}",
+  "remaining_other": "Zostało {{count}}",
+  "longShiftInfo": "Normalny odpoczynek ({{normalRestHours}}h) = max {{thresholdHours}}h zmiana. Powyżej zużywasz budżet skróconego odpoczynku ({{minRestHours}}h) — max {{maxPerCycle}}× w cyklu. Powyżej {{absoluteMaxHours}}h to twardy limit, niemożliwy legalnie.",
+  "thisWeekInfo_one": "W tym tygodniu (informacyjnie, bez wpływu na budżet): {{count}} zmiana powyżej {{thresholdHours}}h",
+  "thisWeekInfo_few": "W tym tygodniu (informacyjnie, bez wpływu na budżet): {{count}} zmiany powyżej {{thresholdHours}}h",
+  "thisWeekInfo_many": "W tym tygodniu (informacyjnie, bez wpływu na budżet): {{count}} zmian powyżej {{thresholdHours}}h",
+  "thisWeekInfo_other": "W tym tygodniu (informacyjnie, bez wpływu na budżet): {{count}} zmian powyżej {{thresholdHours}}h",
+  "alerts": {
+    "restBelowMinimum": "Odpoczynek {{gapHours}}h przed zmianą {{date}} — poniżej minimum {{minHours}}h",
+    "reducedRestBudgetExceeded": "Przekroczony limit skróconych odpoczynków ({{used}}/{{max}}) przed zmianą {{date}}",
+    "dailyDutyAbsoluteMaxExceeded": "Zmiana {{date}} trwała {{duration}} — przekracza absolutny max {{maxHours}}h dobowego okresu pracy (niemożliwe legalnie, żaden odpoczynek tego nie pokryje)",
+    "longShiftOverThreshold": "Zmiana {{date}} trwała {{duration}} — przekracza normalne {{thresholdHours}}h, wymaga skróconego odpoczynku (limit {{maxPerCycle}} w cyklu)",
+    "longShiftBudgetExceeded": "Przekroczony limit zmian >{{thresholdHours}}h ({{used}}/{{max}}) w tym cyklu",
+    "drivingHardLimitExceeded": "Jazda {{driving}}h w dniu {{date}} przekracza maksymalne {{maxHours}}h",
+    "extendedDrivingBudgetExceeded": "Przekroczony limit wydłużonej jazdy ({{used}}/{{max}}) w dniu {{date}}"
+  }
+}

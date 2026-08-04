@@ -1,0 +1,51 @@
+{
+  "dayCategory": {
+    "MonThu": "Pon–Czw",
+    "Fri": "Piątek",
+    "Sat": "Sobota",
+    "Sun": "Niedziela"
+  },
+  "window": {
+    "Days": "Dzień",
+    "Lates": "Popołudnie",
+    "Nights": "Noc"
+  },
+  "shiftSummary": {
+    "driving": "jazda {{driving}}",
+    "paid": "{{hours}} płatne",
+    "noRateCard": "brak stawki",
+    "breakdown": "baza {{base}} + hol {{holiday}} = suma {{total}}",
+    "perLoadBreakdown_one": "{{count}} trasa — suma {{total}}",
+    "perLoadBreakdown_few": "{{count}} trasy — suma {{total}}",
+    "perLoadBreakdown_many": "{{count}} tras — suma {{total}}",
+    "perLoadBreakdown_other": "{{count}} trasy — suma {{total}}"
+  },
+  "preview": {
+    "title": "Podgląd rozliczenia",
+    "base": "Baza (jak \"Pay calculation\" u agencji)",
+    "holiday": "+ Holiday pay (dolicza się tygodniowo, nie widać per zmiana u agencji)",
+    "totalWithHoliday": "Razem (z holiday)",
+    "unpriced": "Brak przypisanej stawki (zmiana niezależna) — {{hours}} płatnych godzin, bez wyliczenia pay.",
+    "perLoadTitle": "Podgląd rozliczenia za trasy",
+    "perLoadTotal": "Suma za trasy",
+    "perLoadEmpty": "Ten cennik jest rozliczany za trasę — dodaj powyżej co najmniej jedną trasę, aby wyliczyć pay."
+  },
+  "payslip": {
+    "title": "Payslip",
+    "weekLabel": "Tydzień (Nd–Sob)",
+    "grossFromPayslip": "Gross z payslipa (£)",
+    "placeholder": "np. 480.56",
+    "calculatedTitle": "Wyliczone z Twoich zmian",
+    "hours": "Godziny",
+    "basePay": "Base pay",
+    "holidayPay": "Holiday pay",
+    "loadPay": "Pay za trasy",
+    "myTotal": "Mój total",
+    "matches": "Zgadza się",
+    "difference": "Różnica: {{amount}}",
+    "higherThanCalc": "Payslip wyższy niż wyliczenie",
+    "lowerThanCalc": "Payslip niższy niż wyliczenie",
+    "exactMatch": "Dokładnie zgodnie z wyliczeniem",
+    "assumptions": "Założenia: przerwa (domyślnie 45 min) odejmowana od końca zmiany (start + czas trwania − przerwa = koniec płatny); zmiana nocna (22:00–06:00) liczona wg stawki dnia jej rozpoczęcia."
+  }
+}

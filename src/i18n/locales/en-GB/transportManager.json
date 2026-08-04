@@ -1,0 +1,31 @@
+{
+  "title": "Transport Manager",
+  "externalLimitWarning": "You hold the transport_manager role for {{operators}} operator(s) (limit {{operatorLimit}}) with {{vehicles}} vehicles combined (limit {{vehicleLimit}}). An external Transport Manager may not exceed these limits.",
+  "status": {
+    "ok": "OK",
+    "problem": "Needs attention"
+  },
+  "hours": {
+    "title": "Recommended hours (Senior Traffic Commissioner guidance)",
+    "summary_one": "{{count}} vehicle",
+    "summary_other": "{{count}} vehicles",
+    "range": "{{min}}–{{max}} hours/week suggested",
+    "fullTime": "Full time suggested",
+    "fullTimePlusAssistance": "Full time plus additional assistance suggested",
+    "caveat": "A starting point only, per the Senior Traffic Commissioner's own guidance — not a fixed rule. Not enforced by this app."
+  },
+  "driversSection": {
+    "title": "Drivers",
+    "empty": "No active drivers in this workspace.",
+    "hoursLabel": "Hours: {{status}}",
+    "cpcLabel": "CPC: {{status}}"
+  },
+  "vehiclesSection": {
+    "title": "Vehicles",
+    "empty": "No active vehicles in this workspace.",
+    "motLabel": "MOT",
+    "insuranceLabel": "Insurance",
+    "defectCount_one": "{{count}} open defect",
+    "defectCount_other": "{{count}} open defects"
+  }
+}

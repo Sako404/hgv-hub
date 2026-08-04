@@ -1,0 +1,83 @@
+{
+  "mobileNav": {
+    "quickNav": "Driver quick navigation",
+    "week": "Week",
+    "add": "Add",
+    "payslip": "Payslip",
+    "history": "History"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "addShift": "Add Shift",
+    "kpi": {
+      "hours": "Hours",
+      "driving": "Driving",
+      "expectedGross": "Expected gross"
+    },
+    "todayShift": {
+      "title": "Today's shift",
+      "none": "No active shift",
+      "cta": "Add Shift",
+      "summary": "{{start}}–{{end}} · {{driving}} driving"
+    },
+    "emptyWeek": {
+      "title": "No shifts this week",
+      "cta": "Add Shift"
+    },
+    "thisWeek": "This week",
+    "todayDriving": "Driving today",
+    "weeklyDriving": "Driving this week",
+    "fortnightDriving": "Driving over 2 weeks (rolling)",
+    "nextStart": {
+      "title": "When you can start next",
+      "normal": "Normal ({{hours}}h rest)",
+      "reduced": "Reduced ({{hours}}h) — {{remaining}}/{{max}} left",
+      "unavailable": "unavailable"
+    }
+  },
+  "addShift": {
+    "title": "Add Shift",
+    "editTitle": "Edit Shift",
+    "date": "Date",
+    "start": "Start",
+    "end": "End",
+    "totalDriving": "Total driving today (hh:mm)",
+    "break": "Break (min, default 45)",
+    "assignment": "Job / employer",
+    "saveError": "Failed to save data.",
+    "save": "Save Shift",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "loads": {
+      "title": "Loads",
+      "referencePlaceholder": "Reference (optional)",
+      "descriptionPlaceholder": "Description (optional)",
+      "amount": "Amount (£)",
+      "distanceMiles": "Miles (optional)",
+      "addLoad": "Add Load",
+      "removeLoad": "Remove load"
+    }
+  },
+  "history": {
+    "title": "History",
+    "empty": "No shifts recorded yet."
+  },
+  "workplaces": {
+    "title": "Workplaces",
+    "subtitle_one": "{{count}} active workplace",
+    "subtitle_other": "{{count}} active workplaces",
+    "empty": "No workplaces set up yet.",
+    "addWorkplace": "Add Workplace",
+    "addTitle": "Add Workplace",
+    "provider": "Agency / employer",
+    "client": "Client (where you actually work)",
+    "addNewOrganisation": "+ Add new organisation",
+    "organisationNamePlaceholder": "Organisation name",
+    "site": "Site name",
+    "relationshipType": "Relationship",
+    "startDate": "Start date",
+    "rateCardName": "Rate card name",
+    "rates": "Rates",
+    "setDefault": "Set as default"
+  }
+}

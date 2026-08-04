@@ -1,0 +1,37 @@
+{
+  "new": {
+    "title": "Nowa kontrola pojazdu",
+    "noVehicles": "Brak dostępnych pojazdów do kontroli — poproś firmę o dodanie pojazdu.",
+    "vehicle": "Pojazd",
+    "odometer": "Przebieg (mile)",
+    "noChecklist": "Dla workspace'u tego pojazdu nie skonfigurowano jeszcze checklisty.",
+    "pairedVehicle": "Sparowana naczepa (opcjonalnie)",
+    "noPairedVehicle": "Brak naczepy — kontrola tylko tego pojazdu",
+    "pairedVehicleHint": "Sparowanie naczepy przechodzi tę samą checklistę dwukrotnie, raz na pojazd, w jednym zgłoszeniu — usterki są zapisywane przy właściwym pojeździe.",
+    "tractorSection": "Ciągnik",
+    "trailerSection": "Naczepa",
+    "resultOk": "OK",
+    "resultDefect": "Usterka",
+    "resultNotApplicable": "N/D",
+    "defectNotesPlaceholder": "Opisz usterkę",
+    "signOffName": "Twoje imię i nazwisko (potwierdzenie)",
+    "signOffHint": "Wpisane potwierdzenie, nie zapisany podpis — potwierdza, że to Ty osobiście wykonałeś tę kontrolę.",
+    "answerAllHint": "Zaznacz każdy punkt jako OK, Usterka lub N/D przed zapisaniem.",
+    "save": "Zapisz kontrolę"
+  },
+  "history": {
+    "title": "Historia kontroli",
+    "empty": "Brak zapisanych kontroli pojazdu.",
+    "statusOk": "OK",
+    "statusDefects": "Znaleziono usterki",
+    "statusDefectsResolved": "Usterka rozwiązana",
+    "showAllItems": "Pokaż wszystkie punkty",
+    "defectStatus": {
+      "open": "Otwarta",
+      "reported": "Zgłoszona",
+      "in_progress": "W trakcie",
+      "resolved": "Rozwiązana"
+    },
+    "defectResolvedNote": "Rozwiązano: {{notes}}"
+  }
+}

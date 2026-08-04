@@ -1,0 +1,21 @@
+{
+  "driver": {
+    "documentExpiring": "{{label}} wygasa {{date}}",
+    "documentExpired": "{{label}} wygasł {{date}}",
+    "cpcWarning": "Szkolenia CPC: zaległości w godzinach w bieżącym cyklu",
+    "cpcProblem": "Szkolenia CPC: cykl po terminie — nie ukończono 35 godzin na czas"
+  },
+  "transportManager": {
+    "externalLimit": "Przekroczono limit przewoźników/pojazdów dla zewnętrznego Transport Managera — szczegóły poniżej",
+    "driverHours": "{{name}}: godziny wymagają uwagi",
+    "driverDocumentExpiring": "{{name}}: dokument wkrótce wygasa",
+    "driverDocumentExpired": "{{name}}: dokument wygasł",
+    "driverCpcWarning": "{{name}}: zaległości w godzinach szkoleń CPC",
+    "driverCpcProblem": "{{name}}: cykl szkoleń CPC po terminie",
+    "vehicleMotExpiring": "{{registration}}: MOT wkrótce wygasa",
+    "vehicleMotExpired": "{{registration}}: MOT wygasł",
+    "vehicleInsuranceExpiring": "{{registration}}: ubezpieczenie wkrótce wygasa",
+    "vehicleInsuranceExpired": "{{registration}}: ubezpieczenie wygasło",
+    "vehicleDangerousDefect": "{{registration}}: otwarta niebezpieczna usterka"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "drivers": {
+    "title": "Drivers",
+    "activeCount_one": "{{count}} active driver · {{workspace}}",
+    "activeCount_other": "{{count}} active drivers · {{workspace}}",
+    "shiftsLogged_one": "{{count}} shift logged",
+    "shiftsLogged_other": "{{count}} shifts logged",
+    "empty": "No drivers in this workspace yet.",
+    "addDriver": "Add driver",
+    "editDriver": "Edit driver",
+    "personSection": "Person",
+    "driverProfileSection": "Driver profile",
+    "name": "Name",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "displayName": "Display name (optional)",
+    "email": "Email (optional)",
+    "referenceNumber": "Reference number (optional)",
+    "status": "Status",
+    "search": "Search",
+    "searchPlaceholder": "Search drivers by name…",
+    "noSearchResults": "No drivers match your search.",
+    "archiveConfirmTitle": "Archive this driver?",
+    "archiveConfirmBody": "They're removed from active driver selection here — their historical shifts, pay, and reports stay exactly as they are.",
+    "restoreConfirmTitle": "Restore driver"
+  },
+  "drilldown": {
+    "readonlyNote": "Read-only — same shift records as the driver's own view",
+    "allHours": "Hours (all shifts)",
+    "gross": "Gross",
+    "compliance": "Compliance",
+    "empty": "No shifts for this driver."
+  },
+  "employment": {
+    "title": "Employment",
+    "empty": "No employment relationships recorded for this workspace.",
+    "since": "Since {{date}}",
+    "ended": "Ended {{date}}",
+    "endAction": "End employment",
+    "endBlocked_one": "Cannot end — {{count}} placement is still active for this employment. End it first.",
+    "endBlocked_other": "Cannot end — {{count}} placements are still active for this employment. End them first.",
+    "placementsLabel": "Placements",
+    "noPlacements": "No placements yet."
+  },
+  "documents": {
+    "title": "Documents",
+    "empty": "This driver isn't tracking any documents yet.",
+    "readonlyNote": "Read-only — the driver manages their own documents"
+  },
+  "cpcTraining": {
+    "readonlyNote": "Read-only — the driver logs their own training sessions"
+  }
+}
