@@ -5,7 +5,14 @@ import { SESSION_COOKIE_NAME } from "../config.js";
 function setSessionCookie(reply, session) {
   reply.setCookie(SESSION_COOKIE_NAME, session.id, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    // Deliberately NOT tied to NODE_ENV — Docker sets NODE_ENV=production
+    // for every deployment, including the plain-HTTP LAN self-hosted
+    // case this app is built for. A Secure cookie is silently never
+    // sent back by the browser over plain HTTP, breaking every request
+    // after login (the app "logs in" then immediately looks signed
+    // out). Only enable this once actually served over HTTPS (e.g.
+    // behind a reverse proxy) via COOKIE_SECURE=true.
+    secure: process.env.COOKIE_SECURE === "true",
     sameSite: "lax",
     path: "/",
     expires: session.expiresAt,

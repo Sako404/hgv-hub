@@ -9,6 +9,7 @@ describe("auth routes — against a real local Postgres", () => {
     await db.delete(sessions);
     await db.delete(accounts);
     await db.delete(people);
+    delete process.env.COOKIE_SECURE;
   });
 
   afterAll(async () => {
@@ -30,7 +31,25 @@ describe("auth routes — against a real local Postgres", () => {
     expect(cookie).toBeTruthy();
     expect(cookie.httpOnly).toBe(true);
     expect(cookie.sameSite).toBe("Lax");
+    // NOT secure by default — Docker sets NODE_ENV=production for every
+    // deployment including plain-HTTP self-hosted ones; a Secure cookie
+    // there would never be sent back by the browser, breaking every
+    // request after login. Only COOKIE_SECURE=true should turn this on.
+    expect(cookie.secure).toBeFalsy();
 
+    await app.close();
+  });
+
+  it("sets a Secure cookie when COOKIE_SECURE=true (for deployments behind real HTTPS)", async () => {
+    process.env.COOKIE_SECURE = "true";
+    const app = await buildApp();
+    const res = await app.inject({
+      method: "POST",
+      url: "/api/auth/register",
+      payload: { email: "janek@example.com", password: "correct-horse-battery-staple", name: "Janek" },
+    });
+    const cookie = res.cookies.find((c) => c.name === SESSION_COOKIE_NAME);
+    expect(cookie.secure).toBe(true);
     await app.close();
   });
 
