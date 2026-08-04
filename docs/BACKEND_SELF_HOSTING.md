@@ -133,6 +133,23 @@ the real one on host ports rather than updating it. Set
 `COMPOSE_PROJECT_NAME=ix-<app_name>` (e.g. `ix-hgv-hub`) to fix this —
 found and fixed after exactly this happened on a real deployment.
 
+**Known limitation: self-update can briefly crash a Custom App
+deployment.** TrueNAS SCALE actively supervises the containers behind
+a Custom App. When the `updater` sidecar runs `docker compose build &&
+docker compose up -d` directly against them, TrueNAS's own supervisor
+can fight it — killing the containers the updater just started/is
+starting, leaving them stuck `Created`/`CRASHED` instead of running.
+Postgres is never affected (its container isn't rebuilt on a source-only
+release, so nothing touches it), so no data is at risk, but the app
+itself needs a nudge to come back: **Apps → hgv-hub → Start** (or
+`midclt call app.start '"hgv-hub"'`). Confirmed live: after that one
+restart, the app came up correctly on the new version with the images
+the updater had already finished building. A proper fix would have the
+`updater` call `midclt call app.update` instead of raw `docker
+compose` on Custom App deployments — not implemented; the raw-compose
+path is what exists today, so budget for occasionally doing this one
+manual step after clicking "Update now" on a TrueNAS Custom App.
+
 **Option B — plain `docker compose`, run once via `sudo`** from an
 interactive SSH session (a real terminal, so it can prompt for the
 sudo password — a non-interactive `ssh host command` won't work):

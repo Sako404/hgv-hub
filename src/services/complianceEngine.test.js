@@ -56,6 +56,25 @@ describe("complianceEngine — driver-based, org-config-independent", () => {
     expect(after).toEqual(before);
   });
 
+  it("alerts from an already-closed cycle (>= cycleResetGapHours since) are dropped, matching the counters", () => {
+    const profile = {
+      rules: {
+        reducedRestMaxPerCycle: 3, minRestHardHours: 9, reducedRestUpperHours: 11,
+        cycleResetGapHours: 24, absoluteMaxDailyHours: 15, longShiftThresholdHours: 13,
+        longShiftMaxPerCycle: 3, drivingHardLimitHours: 10, extendedDrivingThresholdHours: 9,
+        extendedDrivingMaxPerWeek: 2,
+      },
+    };
+    const oldLongShift = { date: "2026-05-01", start: "08:00", end: "22:00", breakMinutes: 45, drivingHours: 0 };
+    // A qualifying gap (>= 24h) after the old shift closes that cycle out.
+    const recentNormalShift = { date: "2026-08-01", start: "08:00", end: "16:00", breakMinutes: 45, drivingHours: 0 };
+
+    const result = computeCompliance([oldLongShift, recentNormalShift], profile);
+
+    expect(result.longShiftUsed).toBe(0);
+    expect(result.alerts).toEqual([]);
+  });
+
   it("complianceEngine module imports neither payEngine nor rateCardService", async () => {
     const fs = await import("node:fs/promises");
     const url = new URL("./complianceEngine.js", import.meta.url);
