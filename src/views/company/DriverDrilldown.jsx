@@ -28,7 +28,7 @@ async function loadDriverDrilldownData(workspaceId, driverPersonId, db) {
   const resolveLoads = await buildLoadsResolver(sortedShifts, db);
   const items = sortedShifts.map((s) => ({ shift: s, breakdown: computeShiftBreakdown(s, resolveRateCard(s), resolveLoads(s)) }));
   const complianceProfile = await resolveComplianceProfileForDriver(driverPersonId, db);
-  const compliance = computeCompliance(sortedShifts, complianceProfile);
+  const compliance = computeCompliance(sortedShifts, complianceProfile, { now: new Date() });
   return { items, compliance };
 }
 

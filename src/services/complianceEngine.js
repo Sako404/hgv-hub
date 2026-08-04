@@ -17,8 +17,16 @@ import { computeDuration, hoursToHM, parseDateTime } from "./shiftMath.js";
  * every threshold literal replaced by complianceProfile.rules.*.
  * @param {import('../domain/types.js').Shift[]} shiftsSorted
  * @param {import('../domain/types.js').ComplianceProfile} complianceProfile
+ * @param {{now?: Date}} [options] - `now`, when given, closes the cycle
+ *   the same way a qualifying gap BETWEEN two logged shifts already does,
+ *   but measured against wall-clock time since the last shift instead —
+ *   without this, a driver who's had a proper rest but hasn't logged
+ *   their NEXT shift yet would see stale counters/alerts from the closed
+ *   cycle indefinitely, since there's no later shift for the loop below
+ *   to measure a gap against. Optional and defaulting to no wall-clock
+ *   check, so existing pure/deterministic callers (tests) are unaffected.
  */
-export function computeCompliance(shiftsSorted, complianceProfile) {
+export function computeCompliance(shiftsSorted, complianceProfile, { now } = {}) {
   const r = complianceProfile.rules;
   let reducedRestUsed = 0;
   let extendedDrivingUsed = 0;
@@ -106,6 +114,13 @@ export function computeCompliance(shiftsSorted, complianceProfile) {
     }
     prevEnd = end;
   });
+
+  if (now && prevEnd && (now - prevEnd) / 3600000 >= r.cycleResetGapHours) {
+    reducedRestUsed = 0;
+    extendedDrivingUsed = 0;
+    longShiftUsed = 0;
+    alerts = [];
+  }
 
   return {
     reducedRestUsed: Math.min(reducedRestUsed, r.reducedRestMaxPerCycle),

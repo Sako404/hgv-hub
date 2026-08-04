@@ -75,6 +75,35 @@ describe("complianceEngine — driver-based, org-config-independent", () => {
     expect(result.alerts).toEqual([]);
   });
 
+  it("a wall-clock `now` past cycleResetGapHours since the last shift closes the cycle even with no later shift logged", () => {
+    const profile = {
+      rules: {
+        reducedRestMaxPerCycle: 3, minRestHardHours: 9, reducedRestUpperHours: 11,
+        cycleResetGapHours: 24, absoluteMaxDailyHours: 15, longShiftThresholdHours: 13,
+        longShiftMaxPerCycle: 3, drivingHardLimitHours: 10, extendedDrivingThresholdHours: 9,
+        extendedDrivingMaxPerWeek: 2,
+      },
+    };
+    const longShift = { date: "2026-08-01", start: "08:00", end: "22:00", breakMinutes: 45, drivingHours: 0 };
+
+    const withoutNow = computeCompliance([longShift], profile);
+    expect(withoutNow.longShiftUsed).toBe(1);
+    expect(withoutNow.alerts).toHaveLength(1);
+
+    // 3 days later, no next shift logged yet — matches a real driver's
+    // "I've had days off since, why is this still showing?" case.
+    const threeDaysLater = new Date("2026-08-04T12:00:00");
+    const withNow = computeCompliance([longShift], profile, { now: threeDaysLater });
+    expect(withNow.longShiftUsed).toBe(0);
+    expect(withNow.alerts).toEqual([]);
+
+    // Not enough time has passed yet — cycle stays open.
+    const twoHoursLater = new Date("2026-08-01T23:00:00");
+    const stillOpen = computeCompliance([longShift], profile, { now: twoHoursLater });
+    expect(stillOpen.longShiftUsed).toBe(1);
+    expect(stillOpen.alerts).toHaveLength(1);
+  });
+
   it("complianceEngine module imports neither payEngine nor rateCardService", async () => {
     const fs = await import("node:fs/promises");
     const url = new URL("./complianceEngine.js", import.meta.url);
