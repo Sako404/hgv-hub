@@ -78,6 +78,67 @@ cat backup.sql | docker compose exec -T postgres psql -U workingtime workingtime
 Take a backup before every upgrade (below), and on whatever schedule
 suits how much data loss you could tolerate.
 
+## TrueNAS SCALE
+
+Plain `docker compose up -d --build` works, but on TrueNAS SCALE the
+`docker` group isn't assigned to regular users (including admin
+accounts) and can't be granted through the TrueNAS UI/API — so neither
+a normal SSH session nor even TrueNAS's own web Shell can run Docker
+commands directly (`permission denied` on `/var/run/docker.sock`). Two
+ways around it, in order of how well they integrate with the rest of
+TrueNAS:
+
+**Option A — register it as a TrueNAS "Custom App"** (recommended —
+shows up in the Apps tab like any other app, and gets uniform
+start/stop/logs through the UI). From an SSH session as your admin
+user (no elevated privileges needed — `midclt` talks to the
+middleware, not the Docker socket directly):
+
+```bash
+cd /path/to/hgv-hub
+docker compose config | tail -n +2 > /tmp/compose-resolved.yml
+python3 -c "
+import json
+with open('/tmp/compose-resolved.yml') as f:
+    compose = f.read()
+print(json.dumps({'app_name': 'hgv-hub', 'custom_app': True, 'custom_compose_config_string': compose}))
+" > /tmp/create-payload.json
+midclt call -j app.create "$(cat /tmp/create-payload.json)"
+```
+
+`docker compose config` resolves every `${VAR}` from your `.env` into
+literal values first — TrueNAS's Custom App system wants a
+fully-resolved compose file, not one that depends on a sibling `.env`.
+
+**To redeploy after pulling new code** (e.g. after `git pull`, or
+before the self-update feature existed): regenerate the payload the
+same way but call `app.update` instead of `app.create`, passing just
+`{"custom_compose_config_string": "..."}`. One real gotcha: if the
+compose YAML's *structure* hasn't changed (only the application source
+inside an unchanged build context has), TrueNAS won't detect a reason
+to rebuild the image — it'll recreate containers from the stale image.
+Force a rebuild by removing the old images first
+(`sudo docker rmi -f ix-<app-name>-<service>` for each service — needs
+`sudo`, which only works from a real interactive terminal since
+`truenas_admin` has no *passwordless* sudo), then re-run `app.update`.
+
+**Option B — plain `docker compose`, run once via `sudo`** from an
+interactive SSH session (a real terminal, so it can prompt for the
+sudo password — a non-interactive `ssh host command` won't work):
+
+```bash
+cd /path/to/hgv-hub
+sudo docker compose up -d --build
+```
+
+Simpler for a one-off, but it won't show up in the Apps tab, and this
+project's own self-update feature (below) recreates containers via
+`docker compose` directly too — it works fine either way since it also
+runs from inside the `updater` container (which already has the
+Docker socket mounted, sidestepping the TrueNAS permission model
+entirely), but Option A's app-registration state won't reflect updates
+applied this way.
+
 ## Staying up to date
 
 Once a day, the server checks the project's GitHub Releases for
