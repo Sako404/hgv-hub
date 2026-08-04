@@ -23,7 +23,7 @@ export function computeCompliance(shiftsSorted, complianceProfile) {
   let reducedRestUsed = 0;
   let extendedDrivingUsed = 0;
   let longShiftUsed = 0;
-  const alerts = [];
+  let alerts = [];
   let prevEnd = null;
 
   shiftsSorted.forEach((shift) => {
@@ -32,9 +32,17 @@ export function computeCompliance(shiftsSorted, complianceProfile) {
     if (prevEnd) {
       const gapHours = (start - prevEnd) / 3600000;
       if (gapHours >= r.cycleResetGapHours) {
+        // A qualifying rest (>= cycleResetGapHours, e.g. a weekly rest)
+        // closes out the cycle the same way it resets the three usage
+        // counters below — alerts from an already-closed cycle are no
+        // longer live/actionable, only historical. Once infringements
+        // get their own persisted record with driver/TM explanations
+        // (queued separately), that history lives there instead; this
+        // engine stays a "what's relevant right now" view.
         reducedRestUsed = 0;
         extendedDrivingUsed = 0;
         longShiftUsed = 0;
+        alerts = [];
       } else if (gapHours < r.minRestHardHours) {
         alerts.push({
           date: shift.date,

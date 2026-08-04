@@ -36,8 +36,17 @@ git commit -m "Bump version to $VERSION"
 
 echo "==> Scanning for known sensitive terms before publishing"
 SENSITIVE_PATTERN='marcin|sakowski|turbo|evri|barnsley|hoyland|doncaster'
-if grep -rEli "$SENSITIVE_PATTERN" --include="*.js" --include="*.jsx" --include="*.md" --include="*.json" \
-    --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=.git . ; then
+# publish-release.sh itself necessarily contains SENSITIVE_PATTERN as literal
+# data (the detection pattern), not a leak — and import-turbo-shifts.mjs is
+# already deliberately excluded from the public tree below, so its
+# intentional real-data content isn't a leak either, just a false positive
+# against this scan.
+SCAN_RESULT="$(grep -rEli "$SENSITIVE_PATTERN" --include="*.js" --include="*.jsx" --include="*.mjs" --include="*.cjs" \
+    --include="*.md" --include="*.json" --include="*.sh" \
+    --exclude-dir=node_modules --exclude-dir=dist --exclude-dir=.git . \
+    | grep -vE '^\./scripts/(publish-release\.sh|import-turbo-shifts\.mjs)$' || true)"
+if [ -n "$SCAN_RESULT" ]; then
+  echo "$SCAN_RESULT"
   echo "!! Found the above file(s) containing a known-sensitive term. Aborting before touching the public repo." >&2
   echo "!! Fix these first, then re-run this script." >&2
   exit 1
@@ -53,6 +62,18 @@ git checkout -B "$TMP_BRANCH" origin/main
 echo "==> Replacing tree with current main's content"
 git rm -rf --ignore-unmatch . > /dev/null
 git checkout main -- .
+
+# Personal one-off tooling — not generic/reusable by other self-hosters,
+# and inherently tied to Marcin's own real employer/data by design (unlike
+# e.g. import-full-account.mjs, which is generic and stays public). Kept in
+# local main only; never reaches the public repo.
+PRIVATE_ONLY_PATHS=(
+  "scripts/import-turbo-shifts.mjs"
+)
+for p in "${PRIVATE_ONLY_PATHS[@]}"; do
+  rm -f "$p"
+done
+
 git add -A
 
 if git diff --cached --quiet; then
