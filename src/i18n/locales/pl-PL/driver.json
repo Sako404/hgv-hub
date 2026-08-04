@@ -1,0 +1,85 @@
+{
+  "mobileNav": {
+    "quickNav": "Szybka nawigacja kierowcy",
+    "week": "Tydzień",
+    "add": "Dodaj",
+    "payslip": "Payslip",
+    "history": "Historia"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "addShift": "Dodaj zmianę",
+    "kpi": {
+      "hours": "Godziny",
+      "driving": "Jazda",
+      "expectedGross": "Oczekiwany brutto"
+    },
+    "todayShift": {
+      "title": "Dzisiejsza zmiana",
+      "none": "Brak aktywnej zmiany",
+      "cta": "Dodaj zmianę",
+      "summary": "{{start}}–{{end}} · jazda {{driving}}"
+    },
+    "emptyWeek": {
+      "title": "Brak zmian w tym tygodniu",
+      "cta": "Dodaj zmianę"
+    },
+    "thisWeek": "Ten tydzień",
+    "todayDriving": "Jazda dziś",
+    "weeklyDriving": "Jazda w tym tygodniu",
+    "fortnightDriving": "Jazda w 2 tygodnie (rolling)",
+    "nextStart": {
+      "title": "Od kiedy możesz zacząć",
+      "normal": "Normalnie ({{hours}}h odpoczynku)",
+      "reduced": "Skrócony ({{hours}}h) — zostało {{remaining}}/{{max}}",
+      "unavailable": "niedostępne"
+    }
+  },
+  "addShift": {
+    "title": "Dodaj zmianę",
+    "editTitle": "Edytuj zmianę",
+    "date": "Data",
+    "start": "Start",
+    "end": "Koniec",
+    "totalDriving": "Łączna jazda w tym dniu (hh:mm)",
+    "break": "Przerwa (min, domyślnie 45)",
+    "assignment": "Zlecenie / pracodawca",
+    "saveError": "Błąd zapisu danych.",
+    "save": "Zapisz zmianę",
+    "saveChanges": "Zapisz zmiany",
+    "cancel": "Anuluj",
+    "loads": {
+      "title": "Trasy",
+      "referencePlaceholder": "Numer referencyjny (opcjonalnie)",
+      "descriptionPlaceholder": "Opis (opcjonalnie)",
+      "amount": "Kwota (£)",
+      "distanceMiles": "Mile (opcjonalnie)",
+      "addLoad": "Dodaj trasę",
+      "removeLoad": "Usuń trasę"
+    }
+  },
+  "history": {
+    "title": "Historia",
+    "empty": "Brak zapisanych zmian."
+  },
+  "workplaces": {
+    "title": "Miejsca pracy",
+    "subtitle_one": "{{count}} aktywne miejsce pracy",
+    "subtitle_few": "{{count}} aktywne miejsca pracy",
+    "subtitle_many": "{{count}} aktywnych miejsc pracy",
+    "subtitle_other": "{{count}} aktywnego miejsca pracy",
+    "empty": "Brak skonfigurowanych miejsc pracy.",
+    "addWorkplace": "Dodaj miejsce pracy",
+    "addTitle": "Dodaj miejsce pracy",
+    "provider": "Agencja / pracodawca",
+    "client": "Klient (gdzie faktycznie pracujesz)",
+    "addNewOrganisation": "+ Dodaj nową organizację",
+    "organisationNamePlaceholder": "Nazwa organizacji",
+    "site": "Nazwa lokalizacji",
+    "relationshipType": "Relacja",
+    "startDate": "Data rozpoczęcia",
+    "rateCardName": "Nazwa cennika",
+    "rates": "Stawki",
+    "setDefault": "Ustaw jako domyślne"
+  }
+}

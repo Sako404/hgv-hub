@@ -1,0 +1,132 @@
+{
+  "organisations": {
+    "title": "Organizacje",
+    "subtitle_one": "{{count}} organizacja",
+    "subtitle_few": "{{count}} organizacje",
+    "subtitle_many": "{{count}} organizacji",
+    "subtitle_other": "{{count}} organizacji",
+    "empty": "Brak organizacji.",
+    "addOrganisation": "Dodaj organizację",
+    "editOrganisation": "Edytuj organizację",
+    "legalName": "Nazwa prawna",
+    "tradingName": "Nazwa handlowa",
+    "types": "Typ",
+    "typesHint": "Organizacja może mieć więcej niż jeden typ.",
+    "typeOptions": {
+      "agency": "Agencja",
+      "transport_company": "Firma transportowa",
+      "client": "Klient",
+      "customer": "Zleceniodawca",
+      "subcontractor": "Podwykonawca",
+      "other": "Inne"
+    },
+    "typesRequired": "Wybierz co najmniej jeden typ.",
+    "archiveConfirmTitle": "Zarchiwizować tę organizację?",
+    "archiveConfirmBody": "Jej lokalizacje i zaangażowania nadal działają i pozostają w historii — zostaną tylko ukryte przy nowych wyborach.",
+    "restoreConfirmTitle": "Przywrócić tę organizację?"
+  },
+  "sites": {
+    "title": "Lokalizacje",
+    "subtitle_one": "{{count}} lokalizacja",
+    "subtitle_few": "{{count}} lokalizacje",
+    "subtitle_many": "{{count}} lokalizacji",
+    "subtitle_other": "{{count}} lokalizacji",
+    "empty": "Brak lokalizacji.",
+    "addSite": "Dodaj lokalizację",
+    "editSite": "Edytuj lokalizację",
+    "name": "Nazwa",
+    "organisation": "Organizacja",
+    "kind": "Rodzaj",
+    "kindOptions": {
+      "hub": "Hub",
+      "depot": "Baza",
+      "client_site": "Lokalizacja klienta"
+    },
+    "address": "Adres",
+    "notes": "Notatki",
+    "organisationLocked": "Ta lokalizacja była już użyta w przydziale zmiany, więc jej organizacji nie można już zmienić.",
+    "archiveConfirmTitle": "Zarchiwizować tę lokalizację?",
+    "archiveConfirmBody": "Zostanie ukryta przy nowych przydziałach; istniejąca historia pozostaje bez zmian.",
+    "restoreConfirmTitle": "Przywrócić tę lokalizację?"
+  },
+  "vehicles": {
+    "title": "Pojazdy",
+    "subtitle_one": "{{count}} pojazd",
+    "subtitle_few": "{{count}} pojazdy",
+    "subtitle_many": "{{count}} pojazdów",
+    "subtitle_other": "{{count}} pojazdu",
+    "empty": "Brak pojazdów.",
+    "addVehicle": "Dodaj pojazd",
+    "editVehicle": "Edytuj pojazd",
+    "registration": "Numer rejestracyjny",
+    "vehicleType": "Typ",
+    "typeOptions": {
+      "rigid": "Sztywny (rigid)",
+      "tractor_unit": "Ciągnik siodłowy",
+      "trailer": "Naczepa",
+      "van": "Van",
+      "other": "Inny"
+    },
+    "make": "Marka",
+    "model": "Model",
+    "notes": "Notatki",
+    "motExpiryDate": "Ważność przeglądu MOT (opcjonalnie)",
+    "insuranceExpiryDate": "Ważność ubezpieczenia (opcjonalnie)",
+    "mot": "MOT",
+    "insurance": "Ubezpieczenie",
+    "archiveConfirmTitle": "Zarchiwizować ten pojazd?",
+    "archiveConfirmBody": "Zostanie ukryty przy nowych kontrolach pojazdu; istniejąca historia pozostaje bez zmian.",
+    "restoreConfirmTitle": "Przywrócić ten pojazd?"
+  },
+  "checklistTemplates": {
+    "title": "Checklisty",
+    "subtitle_one": "{{count}} checklista",
+    "subtitle_few": "{{count}} checklisty",
+    "subtitle_many": "{{count}} checklist",
+    "subtitle_other": "{{count}} checklisty",
+    "empty": "Brak checklist.",
+    "addTemplate": "Dodaj checklistę",
+    "editTemplate": "Edytuj checklistę",
+    "name": "Nazwa",
+    "items": "Punkty kontroli",
+    "itemCategory": "Kategoria",
+    "itemLabel": "Punkt kontroli",
+    "addItem": "Dodaj punkt",
+    "removeItem": "Usuń punkt",
+    "itemCount_one": "{{count}} punkt",
+    "itemCount_few": "{{count}} punkty",
+    "itemCount_many": "{{count}} punktów",
+    "itemCount_other": "{{count}} punktu",
+    "setDefault": "Ustaw jako domyślną",
+    "archiveConfirmTitle": "Zarchiwizować tę checklistę?",
+    "archiveConfirmBody": "Wcześniejsze kontrole pojazdu mają własną zapisaną kopię punktów i pozostają bez zmian — to tylko ukrywa ją przy nowych kontrolach.",
+    "restoreConfirmTitle": "Przywrócić tę checklistę?"
+  },
+  "defects": {
+    "title": "Usterki",
+    "subtitle_one": "{{count}} usterka",
+    "subtitle_few": "{{count}} usterki",
+    "subtitle_many": "{{count}} usterek",
+    "subtitle_other": "{{count}} usterki",
+    "empty": "Brak zgłoszonych usterek.",
+    "severityOptions": {
+      "minor": "Drobna",
+      "major": "Poważna",
+      "dangerous": "Niebezpieczna"
+    },
+    "statusOptions": {
+      "open": "Otwarta",
+      "reported": "Zgłoszona",
+      "in_progress": "W trakcie",
+      "resolved": "Rozwiązana"
+    },
+    "advanceTo": {
+      "reported": "Oznacz jako zgłoszoną",
+      "in_progress": "Oznacz jako w trakcie",
+      "resolved": "Rozwiąż"
+    },
+    "resolvedNotesPlaceholder": "Notatki dot. rozwiązania (opcjonalnie)",
+    "confirmResolve": "Potwierdź rozwiązanie",
+    "resolvedNote": "Rozwiązano: {{notes}}"
+  }
+}

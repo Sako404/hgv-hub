@@ -1,0 +1,49 @@
+{
+  "dayCategory": {
+    "MonThu": "Mon–Thu",
+    "Fri": "Friday",
+    "Sat": "Saturday",
+    "Sun": "Sunday"
+  },
+  "window": {
+    "Days": "Day",
+    "Lates": "Lates",
+    "Nights": "Nights"
+  },
+  "shiftSummary": {
+    "driving": "{{driving}} driving",
+    "paid": "{{hours}} paid",
+    "noRateCard": "no rate card",
+    "breakdown": "base {{base}} + holiday {{holiday}} = total {{total}}",
+    "perLoadBreakdown_one": "{{count}} load — total {{total}}",
+    "perLoadBreakdown_other": "{{count}} loads — total {{total}}"
+  },
+  "preview": {
+    "title": "Pay preview",
+    "base": "Base (as agency \"Pay calculation\")",
+    "holiday": "+ Holiday pay (added weekly, not shown per-shift by the agency)",
+    "totalWithHoliday": "Total (with holiday)",
+    "unpriced": "No rate card assigned (independent shift) — {{hours}} paid hours, no pay calculated.",
+    "perLoadTitle": "Load pay preview",
+    "perLoadTotal": "Total from loads",
+    "perLoadEmpty": "This rate card is per-load — add at least one load above to calculate pay."
+  },
+  "payslip": {
+    "title": "Payslip",
+    "weekLabel": "Week (Sun–Sat)",
+    "grossFromPayslip": "Gross from payslip (£)",
+    "placeholder": "e.g. 480.56",
+    "calculatedTitle": "Calculated from your shifts",
+    "hours": "Hours",
+    "basePay": "Base pay",
+    "holidayPay": "Holiday pay",
+    "loadPay": "Load pay",
+    "myTotal": "My total",
+    "matches": "Matches",
+    "difference": "Difference: {{amount}}",
+    "higherThanCalc": "Payslip higher than calculated",
+    "lowerThanCalc": "Payslip lower than calculated",
+    "exactMatch": "Exactly matches the calculation",
+    "assumptions": "Assumptions: break (default 45 min) deducted from the end of the shift (start + duration − break = paid end); night shift (22:00–06:00) priced at the rate of the day it started."
+  }
+}

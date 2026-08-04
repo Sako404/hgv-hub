@@ -1,0 +1,46 @@
+{
+  "title": "Dokumenty",
+  "subtitle_one": "{{count}} śledzony dokument",
+  "subtitle_few": "{{count}} śledzone dokumenty",
+  "subtitle_many": "{{count}} śledzonych dokumentów",
+  "subtitle_other": "{{count}} śledzonego dokumentu",
+  "empty": "Brak śledzonych dokumentów.",
+  "addDocument": "Dodaj dokument",
+  "addTitle": "Dodaj dokument",
+  "editTitle": "Edytuj dokument",
+  "renewTitle": "Odnów dokument",
+  "renewHint": "Odnowienie zachowuje historię dokumentu — poprzednia data ważności zostaje zapisana, zarchiwizowana.",
+  "confirmRenew": "Potwierdź odnowienie",
+  "renew": "Odnów",
+  "archivedToggle": "Pokaż zarchiwizowane dokumenty",
+  "expiresOn": "Ważny do {{date}}",
+  "noExpiryDate": "Brak ustawionej daty ważności",
+  "types": {
+    "driving_licence": "Prawo jazdy",
+    "tacho_card": "Cyfrowa karta kierowcy (tacho)",
+    "cpc_card": "Karta CPC",
+    "other": "Inny",
+    "tm_cpc": "CPC Transport Managera"
+  },
+  "status": {
+    "ok": "OK",
+    "expiring_soon": "Wkrótce wygasa",
+    "expired": "Wygasł",
+    "unknown": "Brak daty"
+  },
+  "form": {
+    "documentType": "Typ dokumentu",
+    "label": "Nazwa dokumentu",
+    "referenceNumber": "Numer referencyjny (opcjonalnie)",
+    "expiryDate": "Data ważności",
+    "newExpiryDate": "Nowa data ważności",
+    "notes": "Notatki (opcjonalnie)"
+  },
+  "dashboardTile": {
+    "title": "Dokumenty",
+    "ok": "Wszystko aktualne",
+    "expiring_soon": "Wkrótce do odnowienia",
+    "expired": "Wygasł — odnów teraz",
+    "unknown": "Dodaj daty ważności"
+  }
+}

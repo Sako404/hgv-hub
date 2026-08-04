@@ -1,0 +1,56 @@
+{
+  "list": {
+    "title": "Miejsca pracy",
+    "subtitle_one": "{{count}} miejsce pracy",
+    "subtitle_few": "{{count}} miejsca pracy",
+    "subtitle_many": "{{count}} miejsc pracy",
+    "subtitle_other": "{{count}} miejsc pracy",
+    "empty": "Brak miejsc pracy.",
+    "addPlacement": "Dodaj miejsce pracy",
+    "driverCount_one": "{{count}} kierowca",
+    "driverCount_few": "{{count}} kierowców",
+    "driverCount_many": "{{count}} kierowców",
+    "driverCount_other": "{{count}} kierowców",
+    "archiveConfirmTitle": "Zarchiwizować to miejsce pracy?",
+    "archiveConfirmBody": "Zostanie ukryte przy przypisywaniu nowych kierowców — istniejąca historia pozostaje bez zmian.",
+    "restoreConfirmTitle": "Przywrócić to miejsce pracy?",
+    "archiveBlocked_one": "Nie można zarchiwizować — {{count}} kierowca jest nadal przypisany. Najpierw zakończ jego przypisanie.",
+    "archiveBlocked_few": "Nie można zarchiwizować — {{count}} kierowców jest nadal przypisanych. Najpierw zakończ ich przypisania.",
+    "archiveBlocked_many": "Nie można zarchiwizować — {{count}} kierowców jest nadal przypisanych. Najpierw zakończ ich przypisania.",
+    "archiveBlocked_other": "Nie można zarchiwizować — {{count}} kierowców jest nadal przypisanych. Najpierw zakończ ich przypisania.",
+    "archiveBlockedTitle": "Nie można zarchiwizować tego miejsca pracy"
+  },
+  "form": {
+    "createTitle": "Dodaj miejsce pracy",
+    "provider": "Dostawca",
+    "site": "Lokalizacja",
+    "rateCard": "Cennik",
+    "effectiveFrom": "Obowiązuje od",
+    "selectPlaceholder": "Wybierz…"
+  },
+  "detail": {
+    "backToList": "Wróć do miejsc pracy",
+    "rateCardLabel": "Cennik",
+    "activeDrivers_one": "{{count}} przypisany kierowca",
+    "activeDrivers_few": "{{count}} przypisanych kierowców",
+    "activeDrivers_many": "{{count}} przypisanych kierowców",
+    "activeDrivers_other": "{{count}} przypisanych kierowców",
+    "noActiveDrivers": "Brak kierowców obecnie przypisanych do tego miejsca pracy.",
+    "since": "Od {{date}}",
+    "endAction": "Zakończ",
+    "assignDriverLabel": "Przypisz kierowcę",
+    "noEligibleDrivers": "Brak kierowców z pasującym zatrudnieniem do przypisania. Najpierw dodaj je w sekcji Zatrudnienie kierowcy.",
+    "assignAction": "Przypisz",
+    "endedDrivers_one": "{{count}} poprzedni kierowca",
+    "endedDrivers_few": "{{count}} poprzednich kierowców",
+    "endedDrivers_many": "{{count}} poprzednich kierowców",
+    "endedDrivers_other": "{{count}} poprzednich kierowców"
+  },
+  "relationshipTypes": {
+    "employee": "Pracownik",
+    "agency_worker": "Pracownik agencyjny",
+    "subcontractor": "Podwykonawca",
+    "self_employed": "Samozatrudniony",
+    "other": "Inne"
+  }
+}

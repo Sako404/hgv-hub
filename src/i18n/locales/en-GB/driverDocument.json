@@ -1,0 +1,44 @@
+{
+  "title": "Documents",
+  "subtitle_one": "{{count}} tracked document",
+  "subtitle_other": "{{count}} tracked documents",
+  "empty": "No documents tracked yet.",
+  "addDocument": "Add Document",
+  "addTitle": "Add Document",
+  "editTitle": "Edit Document",
+  "renewTitle": "Renew Document",
+  "renewHint": "Renewing keeps this document's history — the old expiry date stays on record, archived.",
+  "confirmRenew": "Confirm Renewal",
+  "renew": "Renew",
+  "archivedToggle": "Show archived documents",
+  "expiresOn": "Expires {{date}}",
+  "noExpiryDate": "No expiry date set",
+  "types": {
+    "driving_licence": "Driving licence",
+    "tacho_card": "Digital tachograph card",
+    "cpc_card": "CPC card",
+    "other": "Other",
+    "tm_cpc": "Transport Manager CPC"
+  },
+  "status": {
+    "ok": "OK",
+    "expiring_soon": "Expiring soon",
+    "expired": "Expired",
+    "unknown": "No date set"
+  },
+  "form": {
+    "documentType": "Document type",
+    "label": "Document name",
+    "referenceNumber": "Reference number (optional)",
+    "expiryDate": "Expiry date",
+    "newExpiryDate": "New expiry date",
+    "notes": "Notes (optional)"
+  },
+  "dashboardTile": {
+    "title": "Documents",
+    "ok": "All up to date",
+    "expiring_soon": "Renewal due soon",
+    "expired": "Expired — renew now",
+    "unknown": "Add expiry dates"
+  }
+}

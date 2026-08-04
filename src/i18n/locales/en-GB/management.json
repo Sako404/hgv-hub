@@ -1,0 +1,120 @@
+{
+  "organisations": {
+    "title": "Organisations",
+    "subtitle_one": "{{count}} organisation",
+    "subtitle_other": "{{count}} organisations",
+    "empty": "No organisations yet.",
+    "addOrganisation": "Add Organisation",
+    "editOrganisation": "Edit Organisation",
+    "legalName": "Legal name",
+    "tradingName": "Trading name",
+    "types": "Type",
+    "typesHint": "An organisation can be more than one type.",
+    "typeOptions": {
+      "agency": "Agency",
+      "transport_company": "Transport company",
+      "client": "Client",
+      "customer": "Customer",
+      "subcontractor": "Subcontractor",
+      "other": "Other"
+    },
+    "typesRequired": "Choose at least one type.",
+    "archiveConfirmTitle": "Archive this organisation?",
+    "archiveConfirmBody": "Its sites and engagements keep working and stay in history — it's just hidden from new selections.",
+    "restoreConfirmTitle": "Restore this organisation?"
+  },
+  "sites": {
+    "title": "Sites",
+    "subtitle_one": "{{count}} site",
+    "subtitle_other": "{{count}} sites",
+    "empty": "No sites yet.",
+    "addSite": "Add Site",
+    "editSite": "Edit Site",
+    "name": "Name",
+    "organisation": "Organisation",
+    "kind": "Kind",
+    "kindOptions": {
+      "hub": "Hub",
+      "depot": "Depot",
+      "client_site": "Client site"
+    },
+    "address": "Address",
+    "notes": "Notes",
+    "organisationLocked": "This site has already been used for a shift assignment, so its organisation can no longer be changed.",
+    "archiveConfirmTitle": "Archive this site?",
+    "archiveConfirmBody": "It's hidden from new assignments; existing history is unaffected.",
+    "restoreConfirmTitle": "Restore this site?"
+  },
+  "vehicles": {
+    "title": "Vehicles",
+    "subtitle_one": "{{count}} vehicle",
+    "subtitle_other": "{{count}} vehicles",
+    "empty": "No vehicles yet.",
+    "addVehicle": "Add Vehicle",
+    "editVehicle": "Edit Vehicle",
+    "registration": "Registration",
+    "vehicleType": "Type",
+    "typeOptions": {
+      "rigid": "Rigid",
+      "tractor_unit": "Tractor unit",
+      "trailer": "Trailer",
+      "van": "Van",
+      "other": "Other"
+    },
+    "make": "Make",
+    "model": "Model",
+    "notes": "Notes",
+    "motExpiryDate": "MOT expiry (optional)",
+    "insuranceExpiryDate": "Insurance expiry (optional)",
+    "mot": "MOT",
+    "insurance": "Insurance",
+    "archiveConfirmTitle": "Archive this vehicle?",
+    "archiveConfirmBody": "It's hidden from new vehicle checks; existing history is unaffected.",
+    "restoreConfirmTitle": "Restore this vehicle?"
+  },
+  "checklistTemplates": {
+    "title": "Checklists",
+    "subtitle_one": "{{count}} checklist",
+    "subtitle_other": "{{count}} checklists",
+    "empty": "No checklists yet.",
+    "addTemplate": "Add Checklist",
+    "editTemplate": "Edit Checklist",
+    "name": "Name",
+    "items": "Items",
+    "itemCategory": "Category",
+    "itemLabel": "Check item",
+    "addItem": "Add item",
+    "removeItem": "Remove item",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "setDefault": "Set as default",
+    "archiveConfirmTitle": "Archive this checklist?",
+    "archiveConfirmBody": "Past vehicle checks keep their own saved copy of the items and are unaffected — this only hides it from new checks.",
+    "restoreConfirmTitle": "Restore this checklist?"
+  },
+  "defects": {
+    "title": "Defects",
+    "subtitle_one": "{{count}} defect",
+    "subtitle_other": "{{count}} defects",
+    "empty": "No defects reported yet.",
+    "severityOptions": {
+      "minor": "Minor",
+      "major": "Major",
+      "dangerous": "Dangerous"
+    },
+    "statusOptions": {
+      "open": "Open",
+      "reported": "Reported",
+      "in_progress": "In progress",
+      "resolved": "Resolved"
+    },
+    "advanceTo": {
+      "reported": "Mark as reported",
+      "in_progress": "Mark as in progress",
+      "resolved": "Resolve"
+    },
+    "resolvedNotesPlaceholder": "Resolution notes (optional)",
+    "confirmResolve": "Confirm resolved",
+    "resolvedNote": "Resolved: {{notes}}"
+  }
+}

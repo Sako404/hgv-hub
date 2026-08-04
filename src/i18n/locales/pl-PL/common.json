@@ -1,0 +1,68 @@
+{
+  "appName": "HGV HUB",
+  "nav": {
+    "primaryNavigation": "Nawigacja główna",
+    "mainNavigation": "Menu główne",
+    "driverGroup": "Kierowca",
+    "dashboard": "Panel",
+    "addShift": "Dodaj zmianę",
+    "payslip": "Payslip",
+    "history": "Historia",
+    "workplaces": "Miejsca pracy",
+    "documents": "Dokumenty",
+    "cpcTraining": "Szkolenia CPC",
+    "drivers": "Kierowcy",
+    "managementGroup": "Zarządzanie",
+    "organisations": "Organizacje",
+    "sites": "Lokalizacje",
+    "rateCards": "Cenniki",
+    "vehicles": "Pojazdy",
+    "checklistTemplates": "Checklisty",
+    "workGroup": "Praca",
+    "workPlacements": "Miejsca pracy",
+    "vehicleCheckGroup": "Kontrola pojazdu",
+    "newCheck": "Nowa kontrola",
+    "checkHistory": "Historia kontroli",
+    "vehicleSetupGroup": "Ustawienia pojazdu",
+    "defects": "Usterki",
+    "transportManagerGroup": "Transport Manager",
+    "transportManager": "Panel",
+    "signOut": "Wyloguj się"
+  },
+  "workspaceSwitcher": {
+    "label": "Przełącz workspace"
+  },
+  "language": {
+    "label": "Język",
+    "en-GB": "Angielski",
+    "pl-PL": "Polski"
+  },
+  "sidebar": {
+    "collapse": "Zwiń",
+    "collapseSidebar": "Zwiń panel boczny",
+    "expandSidebar": "Rozwiń panel boczny"
+  },
+  "mobileNav": {
+    "openNavigation": "Otwórz nawigację",
+    "closeNavigation": "Zamknij nawigację"
+  },
+  "backToDrivers": "Wróć do kierowców",
+  "noActivePerson": "Nie znaleziono aktywnego użytkownika — migracje powinny były się uruchomić przy starcie.",
+  "loading": "Wczytywanie…",
+  "loadError": "Wystąpił błąd podczas wczytywania danych.",
+  "storageUnavailable": "Pamięć lokalna jest niedostępna w tej przeglądarce. Spróbuj innej przeglądarki lub wyłącz tryb prywatny.",
+  "independentDriver": "Niezależny kierowca",
+  "export": "Eksportuj",
+  "import": "Importuj",
+  "back": "Wstecz",
+  "cancel": "Anuluj",
+  "create": "Utwórz",
+  "edit": "Edytuj",
+  "delete": "Usuń",
+  "save": "Zapisz",
+  "archive": "Archiwizuj",
+  "restore": "Przywróć",
+  "active": "Aktywny",
+  "archived": "Zarchiwizowany",
+  "ok": "OK"
+}

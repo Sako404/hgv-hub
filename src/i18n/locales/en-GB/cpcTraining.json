@@ -1,0 +1,26 @@
+{
+  "title": "CPC Training",
+  "subtitle_one": "{{count}} logged session",
+  "subtitle_other": "{{count}} logged sessions",
+  "empty": "No training sessions logged yet.",
+  "logTraining": "Log Training",
+  "logTitle": "Log Training",
+  "sessionSummary": "{{date}} · {{hours}}h",
+  "cycleCard": {
+    "title": "5-year cycle",
+    "progress": "{{completed}}/{{required}}h · cycle ends {{date}}",
+    "unknownCycle": "Add your CPC card under Documents to track your cycle"
+  },
+  "status": {
+    "ok": "OK",
+    "warning": "Behind",
+    "problem": "Overdue",
+    "unknown_cycle": "No CPC card set"
+  },
+  "form": {
+    "date": "Date",
+    "hours": "Hours",
+    "provider": "Training provider (optional)",
+    "notes": "Notes (optional)"
+  }
+}

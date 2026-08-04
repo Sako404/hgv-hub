@@ -1,0 +1,27 @@
+{
+  "status": {
+    "ok": "OK",
+    "warning": "Warning",
+    "problem": "Problem"
+  },
+  "categories": {
+    "longShift": "Extended shifts",
+    "extendedDriving": "Extended driving",
+    "reducedRest": "Reduced rests"
+  },
+  "detailsToggle": "Compliance rules explained",
+  "remaining_one": "{{count}} remaining",
+  "remaining_other": "{{count}} remaining",
+  "longShiftInfo": "Normal rest ({{normalRestHours}}h) = max {{thresholdHours}}h shift. Beyond that you use the reduced-rest budget ({{minRestHours}}h) — max {{maxPerCycle}}× per cycle. Beyond {{absoluteMaxHours}}h is a hard limit, not legally possible.",
+  "thisWeekInfo_one": "This week (informational, no effect on the budget): {{count}} shift over {{thresholdHours}}h",
+  "thisWeekInfo_other": "This week (informational, no effect on the budget): {{count}} shifts over {{thresholdHours}}h",
+  "alerts": {
+    "restBelowMinimum": "Rest of {{gapHours}}h before the {{date}} shift — below the {{minHours}}h minimum",
+    "reducedRestBudgetExceeded": "Reduced-rest budget exceeded ({{used}}/{{max}}) before the {{date}} shift",
+    "dailyDutyAbsoluteMaxExceeded": "The {{date}} shift lasted {{duration}} — exceeds the absolute {{maxHours}}h daily duty limit (not legally possible, no rest covers this)",
+    "longShiftOverThreshold": "The {{date}} shift lasted {{duration}} — exceeds the normal {{thresholdHours}}h, requires reduced rest (limit {{maxPerCycle}} per cycle)",
+    "longShiftBudgetExceeded": ">{{thresholdHours}}h shift budget exceeded ({{used}}/{{max}}) this cycle",
+    "drivingHardLimitExceeded": "Driving {{driving}}h on {{date}} exceeds the {{maxHours}}h maximum",
+    "extendedDrivingBudgetExceeded": "Extended-driving budget exceeded ({{used}}/{{max}}) on {{date}}"
+  }
+}

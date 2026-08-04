@@ -1,0 +1,45 @@
+{
+  "list": {
+    "title": "Rate Cards",
+    "subtitle_one": "{{count}} rate card",
+    "subtitle_other": "{{count}} rate cards",
+    "empty": "No rate cards yet.",
+    "addRateCard": "Create Rate Card",
+    "currentRate": "Current rate",
+    "effectiveFrom": "Effective from {{date}}",
+    "versionCount_one": "{{count}} version",
+    "versionCount_other": "{{count}} versions",
+    "noVersionsYet": "No versions yet"
+  },
+  "detail": {
+    "backToList": "Back to Rate Cards",
+    "currentRate": "Current rate",
+    "effectiveFrom": "Effective from {{date}}",
+    "previousRates": "Previous rates",
+    "noPreviousRates": "No previous versions — this is the only rate this lineage has had.",
+    "reviseAction": "Create new version",
+    "renameAction": "Rename"
+  },
+  "form": {
+    "createTitle": "Create Rate Card",
+    "reviseTitle": "New Version",
+    "reviseIntro": "Pre-filled from the current rates — change what's different, then set when it takes effect.",
+    "renameTitle": "Rename Rate Card",
+    "name": "Name",
+    "effectiveFrom": "Effective from",
+    "effectiveFromMustBeLater": "Must be after the current version's effective date ({{date}}).",
+    "payType": "Pay type",
+    "payTypeOptions": {
+      "hourly": "Hourly",
+      "per_load": "Per load"
+    },
+    "payTypeHint": "Locked once this rate card is used — choose carefully. Hourly prices shifts from the grid below; per-load has no grid, each trip is priced individually when it's logged.",
+    "perLoadNoGrid": "This rate card is per-load — there's no rate grid to set here. Each trip's amount is entered individually when it's logged.",
+    "rates": "Rates",
+    "baseRate": "Base",
+    "holidayRate": "+ Holiday",
+    "archiveConfirmTitle": "Archive this Rate Card?",
+    "archiveConfirmBody": "It's hidden from new work assignments — existing shifts and assignments that already use it are completely unaffected.",
+    "restoreConfirmTitle": "Restore this Rate Card?"
+  }
+}

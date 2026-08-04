@@ -1,0 +1,49 @@
+{
+  "list": {
+    "title": "Cenniki",
+    "subtitle_one": "{{count}} cennik",
+    "subtitle_few": "{{count}} cenniki",
+    "subtitle_many": "{{count}} cenników",
+    "subtitle_other": "{{count}} cenników",
+    "empty": "Brak cenników.",
+    "addRateCard": "Utwórz cennik",
+    "currentRate": "Aktualna stawka",
+    "effectiveFrom": "Obowiązuje od {{date}}",
+    "versionCount_one": "{{count}} wersja",
+    "versionCount_few": "{{count}} wersje",
+    "versionCount_many": "{{count}} wersji",
+    "versionCount_other": "{{count}} wersji",
+    "noVersionsYet": "Brak wersji"
+  },
+  "detail": {
+    "backToList": "Wróć do cenników",
+    "currentRate": "Aktualna stawka",
+    "effectiveFrom": "Obowiązuje od {{date}}",
+    "previousRates": "Poprzednie stawki",
+    "noPreviousRates": "Brak poprzednich wersji — to jedyna stawka, jaką miał ten cennik.",
+    "reviseAction": "Utwórz nową wersję",
+    "renameAction": "Zmień nazwę"
+  },
+  "form": {
+    "createTitle": "Utwórz cennik",
+    "reviseTitle": "Nowa wersja",
+    "reviseIntro": "Wypełniono aktualnymi stawkami — zmień to, co się różni, i ustaw datę obowiązywania.",
+    "renameTitle": "Zmień nazwę cennika",
+    "name": "Nazwa",
+    "effectiveFrom": "Obowiązuje od",
+    "effectiveFromMustBeLater": "Musi być późniejsza niż data obowiązywania aktualnej wersji ({{date}}).",
+    "payType": "Typ rozliczenia",
+    "payTypeOptions": {
+      "hourly": "Godzinowe",
+      "per_load": "Za trasę"
+    },
+    "payTypeHint": "Zablokowane po pierwszym użyciu tego cennika — wybierz uważnie. Godzinowe liczy zmiany z siatki stawek poniżej; za trasę nie ma siatki, kwota każdej trasy wpisywana jest osobno przy dodawaniu zmiany.",
+    "perLoadNoGrid": "Ten cennik rozlicza się za trasę — nie ma tu siatki stawek do ustawienia. Kwota każdej trasy wpisywana jest osobno przy jej dodawaniu.",
+    "rates": "Stawki",
+    "baseRate": "Podstawowa",
+    "holidayRate": "+ Urlopowa",
+    "archiveConfirmTitle": "Zarchiwizować ten cennik?",
+    "archiveConfirmBody": "Zostanie ukryty przy nowych przydziałach pracy — istniejące zmiany i przydziały, które już go używają, pozostają bez zmian.",
+    "restoreConfirmTitle": "Przywrócić ten cennik?"
+  }
+}

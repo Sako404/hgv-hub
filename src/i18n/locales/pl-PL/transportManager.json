@@ -1,0 +1,35 @@
+{
+  "title": "Transport Manager",
+  "externalLimitWarning": "Posiadasz rolę transport_manager w {{operators}} przewoźnikach (limit {{operatorLimit}}) z łącznie {{vehicles}} pojazdami (limit {{vehicleLimit}}). Zewnętrzny Transport Manager nie może przekraczać tych limitów.",
+  "status": {
+    "ok": "OK",
+    "problem": "Wymaga uwagi"
+  },
+  "hours": {
+    "title": "Zalecane godziny (wytyczne Senior Traffic Commissioner)",
+    "summary_one": "{{count}} pojazd",
+    "summary_few": "{{count}} pojazdy",
+    "summary_many": "{{count}} pojazdów",
+    "summary_other": "{{count}} pojazdu",
+    "range": "Sugerowane {{min}}–{{max}} godz./tydzień",
+    "fullTime": "Sugerowany pełny etat",
+    "fullTimePlusAssistance": "Sugerowany pełny etat plus dodatkowe wsparcie",
+    "caveat": "Tylko punkt wyjścia, zgodnie z wytycznymi Senior Traffic Commissioner — nie sztywna zasada. Ta aplikacja tego nie egzekwuje."
+  },
+  "driversSection": {
+    "title": "Kierowcy",
+    "empty": "Brak aktywnych kierowców w tym workspace.",
+    "hoursLabel": "Godziny: {{status}}",
+    "cpcLabel": "CPC: {{status}}"
+  },
+  "vehiclesSection": {
+    "title": "Pojazdy",
+    "empty": "Brak aktywnych pojazdów w tym workspace.",
+    "motLabel": "MOT",
+    "insuranceLabel": "Ubezpieczenie",
+    "defectCount_one": "{{count}} otwarta usterka",
+    "defectCount_few": "{{count}} otwarte usterki",
+    "defectCount_many": "{{count}} otwartych usterek",
+    "defectCount_other": "{{count}} otwartej usterki"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Szkolenia CPC",
+  "subtitle_one": "{{count}} zapisana sesja",
+  "subtitle_few": "{{count}} zapisane sesje",
+  "subtitle_many": "{{count}} zapisanych sesji",
+  "subtitle_other": "{{count}} zapisanej sesji",
+  "empty": "Brak zapisanych szkoleń.",
+  "logTraining": "Zapisz szkolenie",
+  "logTitle": "Zapisz szkolenie",
+  "sessionSummary": "{{date}} · {{hours}}h",
+  "cycleCard": {
+    "title": "Cykl 5-letni",
+    "progress": "{{completed}}/{{required}}h · cykl kończy się {{date}}",
+    "unknownCycle": "Dodaj kartę CPC w Dokumentach, aby śledzić cykl"
+  },
+  "status": {
+    "ok": "OK",
+    "warning": "Zaległości",
+    "problem": "Po terminie",
+    "unknown_cycle": "Brak karty CPC"
+  },
+  "form": {
+    "date": "Data",
+    "hours": "Godziny",
+    "provider": "Organizator szkolenia (opcjonalnie)",
+    "notes": "Notatki (opcjonalnie)"
+  }
+}

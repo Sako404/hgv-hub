@@ -1,0 +1,21 @@
+{
+  "driver": {
+    "documentExpiring": "{{label}} expires {{date}}",
+    "documentExpired": "{{label}} expired {{date}}",
+    "cpcWarning": "CPC training: behind on hours for the current cycle",
+    "cpcProblem": "CPC training: cycle overdue — 35 hours not completed in time"
+  },
+  "transportManager": {
+    "externalLimit": "You're outside the external Transport Manager operator/vehicle limit — see below",
+    "driverHours": "{{name}}: hours compliance needs attention",
+    "driverDocumentExpiring": "{{name}}: a document expires soon",
+    "driverDocumentExpired": "{{name}}: a document has expired",
+    "driverCpcWarning": "{{name}}: behind on CPC training hours",
+    "driverCpcProblem": "{{name}}: CPC training cycle overdue",
+    "vehicleMotExpiring": "{{registration}}: MOT expires soon",
+    "vehicleMotExpired": "{{registration}}: MOT has expired",
+    "vehicleInsuranceExpiring": "{{registration}}: insurance expires soon",
+    "vehicleInsuranceExpired": "{{registration}}: insurance has expired",
+    "vehicleDangerousDefect": "{{registration}}: dangerous defect open"
+  }
+}
