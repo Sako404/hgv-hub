@@ -122,6 +122,17 @@ Force a rebuild by removing the old images first
 `sudo`, which only works from a real interactive terminal since
 `truenas_admin` has no *passwordless* sudo), then re-run `app.update`.
 
+**If you use the self-update feature (below) with a Custom App
+deployment, `COMPOSE_PROJECT_NAME` in `.env` is required, not
+optional.** TrueNAS's containers are named `ix-<app_name>-*`, but a
+plain `docker compose up -d` run from the repo directory (which is
+exactly what the `updater` service does) defaults to a project name
+derived from the *directory name* instead — with nothing telling it
+otherwise, it creates a second, independent stack that collides with
+the real one on host ports rather than updating it. Set
+`COMPOSE_PROJECT_NAME=ix-<app_name>` (e.g. `ix-hgv-hub`) to fix this —
+found and fixed after exactly this happened on a real deployment.
+
 **Option B — plain `docker compose`, run once via `sudo`** from an
 interactive SSH session (a real terminal, so it can prompt for the
 sudo password — a non-interactive `ssh host command` won't work):
