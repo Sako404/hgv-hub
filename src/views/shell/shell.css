@@ -535,6 +535,25 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   max-width: 100%;
 }
 
+/* ── Update banner ───────────────────────────────────────────────
+   Rendered above the active view's own PageHeader (which has its own
+   hamburger clearance below), so without this it sits flush at the
+   top-left — directly under the fixed hamburger button below the
+   desktop breakpoint, partially hiding it. Same left-padding value as
+   .shell-page-header, for the same reason. */
+.shell-update-banner-wrap {
+  padding: 16px 16px 0 64px;
+  max-width: var(--shell-content-max-width);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .shell-update-banner-wrap {
+    padding: 20px 28px 0;
+  }
+}
+
 /* ── Mobile bottom nav — visible only below the desktop breakpoint ── */
 .shell-mobile-bottom-nav {
   display: flex;

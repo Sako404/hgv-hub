@@ -62,8 +62,10 @@ echo "restrict,command=\"/usr/bin/python3 /mnt/APPS/hgv-hub-updater/bin/hgv_hub_
 
 # 5. Pin the TrueNAS host's own SSH host key into a known_hosts file
 #    for the updater container to verify against (StrictHostKeyChecking
-#    stays on — no trust-on-first-use inside a container).
-ssh-keyscan -t ed25519 127.0.0.1 > /mnt/APPS/hgv-hub-updater/known_hosts
+#    stays on — no trust-on-first-use inside a container). Scan the
+#    SAME address TRUENAS_SSH_HOST below will actually connect
+#    through, not 127.0.0.1 -- see the note under that variable for why.
+ssh-keyscan -t ed25519 <TRUENAS_LAN_IP> > /mnt/APPS/hgv-hub-updater/known_hosts
 ```
 
 Then set in the app's `.env` (or push via `midclt call app.update`, the
@@ -71,16 +73,25 @@ same way the restart-policy fix was deployed — see the Brain project
 record for that exact pattern):
 
 ```
-TRUENAS_SSH_HOST=127.0.0.1
+TRUENAS_SSH_HOST=<TRUENAS_LAN_IP, e.g. 192.0.2.10>
 TRUENAS_SSH_KEY_HOST_PATH=/mnt/APPS/hgv-hub-updater/updater_key
 TRUENAS_SSH_KNOWN_HOSTS_HOST_PATH=/mnt/APPS/hgv-hub-updater/known_hosts
 UPDATER_STATE_HOST_PATH=/mnt/APPS/hgv-hub-updater/state
 ```
 
-`TRUENAS_SSH_HOST=127.0.0.1` because the updater container and the
-TrueNAS host it's SSHing into are the same machine — using the
-loopback address avoids depending on the LAN IP staying stable, and
-keeps this traffic from ever leaving the host.
+**Do not use `127.0.0.1` for `TRUENAS_SSH_HOST`** — found live during
+this feature's own bootstrap: `127.0.0.1` inside the `updater`
+container's network namespace means the container itself, not the
+TrueNAS host (standard Docker networking — a bridge-networked
+container never shares the host's loopback). The updater's own SSH
+client failed with `Connection refused` until this was pointed at the
+host's real LAN IP instead. `known_hosts` must be scanned against that
+same address (a host key is tied to how you *reach* the box, not just
+which box it is — `ssh`'s known_hosts matching is by hostname/IP).
+A future improvement worth considering: `host.docker.internal` (with
+`extra_hosts: ["host.docker.internal:host-gateway"]` in
+`docker-compose.yml`) would decouple this from the LAN IP staying
+stable — not done here, since fixing the immediate bug took priority.
 
 ## What the trigger script does and doesn't trust
 

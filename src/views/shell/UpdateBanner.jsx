@@ -101,30 +101,32 @@ export default function UpdateBanner() {
   }
 
   return (
-    <Card style={{ marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <RefreshCw size={14} color="#4DD9E8" />
-        <span style={{ fontSize: 12.5, color: "#EDEEF0" }}>{message}</span>
-        {error && <span style={{ fontSize: 12, color: "#FF5A5F" }}>{error}</span>}
-      </div>
-      {applyState?.status === "success" ? (
-        <button
-          type="button"
-          style={{ ...primaryBtnStyle, flex: "none", padding: "6px 14px" }}
-          onClick={() => window.location.reload()}
-        >
-          {t("update.reload")}
-        </button>
-      ) : (
-        <button
-          type="button"
-          style={{ ...primaryBtnStyle, flex: "none", padding: "6px 14px" }}
-          onClick={handleApply}
-          disabled={isApplying}
-        >
-          {isApplying ? t("update.applying") : t("update.confirm")}
-        </button>
-      )}
-    </Card>
+    <div className="shell-update-banner-wrap">
+      <Card style={{ marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <RefreshCw size={14} color="#4DD9E8" />
+          <span style={{ fontSize: 12.5, color: "#EDEEF0" }}>{message}</span>
+          {error && <span style={{ fontSize: 12, color: "#FF5A5F" }}>{error}</span>}
+        </div>
+        {applyState?.status === "success" ? (
+          <button
+            type="button"
+            style={{ ...primaryBtnStyle, flex: "none", padding: "6px 14px" }}
+            onClick={() => window.location.reload()}
+          >
+            {t("update.reload")}
+          </button>
+        ) : (
+          <button
+            type="button"
+            style={{ ...primaryBtnStyle, flex: "none", padding: "6px 14px" }}
+            onClick={handleApply}
+            disabled={isApplying}
+          >
+            {isApplying ? t("update.applying") : t("update.confirm")}
+          </button>
+        )}
+      </Card>
+    </div>
   );
 }
