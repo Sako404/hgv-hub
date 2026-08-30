@@ -35,7 +35,17 @@
   "update": {
     "available": "Dostępna aktualizacja: v{{version}}",
     "confirm": "Aktualizuj teraz",
-    "applying": "Aktualizowanie…"
+    "applying": "Aktualizowanie…",
+    "success": "Zaktualizowano do v{{version}} — odśwież, aby zacząć korzystać",
+    "reload": "Odśwież",
+    "failed": "Aktualizacja nie powiodła się: {{error}}",
+    "stage": {
+      "checkout": "Pobieranie nowej wersji…",
+      "build": "Budowanie…",
+      "redeploy": "Wdrażanie…",
+      "health-check": "Weryfikacja poprawności nowej wersji…",
+      "up": "Stosowanie…"
+    }
   },
   "language": {
     "label": "Język",

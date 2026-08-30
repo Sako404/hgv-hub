@@ -87,4 +87,41 @@ describe("updates routes — against a real local Postgres", () => {
     expect(res.json()).toEqual({ status: "updating" });
     await app.close();
   });
+
+  it("POST /api/updates/apply passes the updater's 409 (already in progress) through distinctly, not as a generic 502", async () => {
+    vi.stubGlobal("fetch", mockGithubRelease("v9.9.9"));
+    const app = await buildApp();
+    const { cookieHeader, personId } = await registerAndGetCookie(app);
+    await grantOwnerRole(personId);
+    await app.inject({ method: "GET", url: "/api/updates/status", headers: { cookie: cookieHeader } });
+
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({ ok: false, status: 409, json: async () => ({ error: "update already in progress" }) })
+    );
+    const res = await app.inject({ method: "POST", url: "/api/updates/apply", headers: { cookie: cookieHeader } });
+    expect(res.statusCode).toBe(409);
+    expect(res.json()).toEqual({ error: "update already in progress" });
+    await app.close();
+  });
+
+  it("GET /api/updates/apply/status passes the updater's progress state through to an owner", async () => {
+    const app = await buildApp();
+    const { cookieHeader, personId } = await registerAndGetCookie(app);
+    await grantOwnerRole(personId);
+
+    const state = { status: "success", stage: "health-check", runId: "r1", targetTag: "v9.9.9" };
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => state }));
+    const res = await app.inject({ method: "GET", url: "/api/updates/apply/status", headers: { cookie: cookieHeader } });
+    expect(res.statusCode).toBe(200);
+    expect(res.json()).toEqual(state);
+    await app.close();
+  });
+
+  it("GET /api/updates/apply/status 401s an unauthenticated request", async () => {
+    const app = await buildApp();
+    const res = await app.inject({ method: "GET", url: "/api/updates/apply/status" });
+    expect(res.statusCode).toBe(401);
+    await app.close();
+  });
 });

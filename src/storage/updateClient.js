@@ -25,3 +25,10 @@ export function fetchUpdateStatus(baseUrl) {
 export function applyUpdate(baseUrl) {
   return updatesFetch(baseUrl, "/api/updates/apply", { method: "POST" });
 }
+
+/** Progress of an in-flight (or just-finished) update — see UpdateBanner.jsx,
+ * which polls this after applyUpdate() resolves, since accepting the
+ * request is not the same as the update having actually succeeded. */
+export function fetchApplyStatus(baseUrl) {
+  return updatesFetch(baseUrl, "/api/updates/apply/status");
+}

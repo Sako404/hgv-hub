@@ -2,7 +2,12 @@
 # this container talks to the HOST's Docker daemon via the mounted
 # socket (see docker-compose.yml), it never runs its own nested daemon.
 FROM docker:27-cli
-RUN apk add --no-cache nodejs git
+# openssh-client: only used on TrueNAS deployments, to hand off the actual
+# container lifecycle to TrueNAS's own middleware (see
+# deploy/truenas/README.md and src/index.js) instead of this container
+# running `docker compose up/down` itself. Harmless/unused on a plain
+# generic deployment (TRUENAS_SSH_HOST unset).
+RUN apk add --no-cache nodejs git openssh-client
 WORKDIR /updater
 COPY updater/src/index.js ./index.js
 EXPOSE 4000

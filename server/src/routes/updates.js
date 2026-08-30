@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { memberships } from "../db/schema.js";
 import { requireSession } from "../middleware/session.middleware.js";
-import { checkForUpdate, applyUpdate, RUNNING_VERSION } from "../services/updateService.js";
+import { checkForUpdate, applyUpdate, getApplyStatus, RUNNING_VERSION } from "../services/updateService.js";
 
 const SERVER_MANAGEABLE_ROLES = ["owner", "admin"];
 
@@ -44,6 +44,18 @@ export default async function updatesRoutes(fastify) {
         return;
       }
       return await applyUpdate();
+    } catch (err) {
+      // The updater's own 409 (an update is already in progress, either
+      // in this container or on the TrueNAS host-side worker) is a
+      // meaningful, distinct outcome for the client to show — not a
+      // generic upstream failure.
+      reply.code(err.status === 409 ? 409 : 502).send({ error: err.message });
+    }
+  });
+
+  fastify.get("/api/updates/apply/status", async (request, reply) => {
+    try {
+      return await getApplyStatus();
     } catch (err) {
       reply.code(502).send({ error: err.message });
     }

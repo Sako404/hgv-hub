@@ -35,7 +35,17 @@
   "update": {
     "available": "Update available: v{{version}}",
     "confirm": "Update now",
-    "applying": "Updating…"
+    "applying": "Updating…",
+    "success": "Updated to v{{version}} — reload to use it",
+    "reload": "Reload",
+    "failed": "Update failed: {{error}}",
+    "stage": {
+      "checkout": "Fetching new version…",
+      "build": "Building…",
+      "redeploy": "Redeploying…",
+      "health-check": "Verifying the new version is healthy…",
+      "up": "Applying…"
+    }
   },
   "language": {
     "label": "Language",

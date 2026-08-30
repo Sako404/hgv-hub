@@ -54,9 +54,23 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${REPO_HOST_PATH:-.}:${REPO_HOST_PATH:-.}
+      # TrueNAS-only, see docs/BACKEND_SELF_HOSTING.md and
+      # deploy/truenas/README.md. Harmless on a generic deployment
+      # (TRUENAS_SSH_HOST unset, these paths never read): /dev/null is a
+      # valid, always-present bind-mount source for an unused file
+      # target; the state dir default lives outside the repo, in /tmp,
+      # so it never touches the git working tree either way.
+      - ${TRUENAS_SSH_KEY_HOST_PATH:-/dev/null}:/updater-ssh/id_ed25519:ro
+      - ${TRUENAS_SSH_KNOWN_HOSTS_HOST_PATH:-/dev/null}:/updater-ssh/known_hosts:ro
+      - ${UPDATER_STATE_HOST_PATH:-/tmp/hgv-hub-updater-state-unused}:/updater-state:ro
     environment:
       REPO_HOST_PATH: ${REPO_HOST_PATH:-.}
       COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME:-}
+      # Presence of TRUENAS_SSH_HOST is what selects the TrueNAS
+      # lifecycle-handoff path in updater/src/index.js -- leave unset for
+      # a plain/generic Docker Compose deployment.
+      TRUENAS_SSH_HOST: ${TRUENAS_SSH_HOST:-}
+      TRUENAS_SSH_USER: ${TRUENAS_SSH_USER:-truenas_admin}
     restart: unless-stopped
 
 volumes:

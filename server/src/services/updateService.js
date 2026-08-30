@@ -74,7 +74,24 @@ export async function applyUpdate() {
   const res = await fetch(`${UPDATER_BASE_URL}/apply`, { method: "POST" });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
-    throw new Error(body.error ?? `Updater request failed: ${res.status}`);
+    const err = new Error(body.error ?? `Updater request failed: ${res.status}`);
+    err.status = res.status;
+    throw err;
+  }
+  return res.json();
+}
+
+/**
+ * Passthrough to the updater's own progress state — see updater/src/lib.js's
+ * mergeStatus for why this can keep reporting correctly even mid-update,
+ * across the updater sidecar's own container being recreated (TrueNAS
+ * deployments: a redeploy always recreates every container in the app,
+ * updater included).
+ */
+export async function getApplyStatus() {
+  const res = await fetch(`${UPDATER_BASE_URL}/status`);
+  if (!res.ok) {
+    throw new Error(`Updater status request failed: ${res.status}`);
   }
   return res.json();
 }

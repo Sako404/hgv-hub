@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { fetchUpdateStatus, applyUpdate } from "./updateClient.js";
+import { fetchUpdateStatus, applyUpdate, fetchApplyStatus } from "./updateClient.js";
 
 function mockFetchOnce(response) {
   const fetchMock = vi.fn().mockResolvedValue(response);
@@ -39,5 +39,18 @@ describe("updateClient", () => {
   it("throws with the server's error message on a non-ok response", async () => {
     mockFetchOnce({ ok: false, status: 403, json: async () => ({ error: "Only an owner/admin can manage server updates" }) });
     await expect(fetchUpdateStatus("http://api.test")).rejects.toThrow("Only an owner/admin can manage server updates");
+  });
+
+  it("fetchApplyStatus GETs the apply-progress endpoint and returns the parsed body", async () => {
+    const fetchMock = mockFetchOnce({
+      ok: true,
+      json: async () => ({ status: "updating", stage: "redeploy", runId: "r1" }),
+    });
+    const result = await fetchApplyStatus("http://api.test");
+
+    const [url, options] = fetchMock.mock.calls[0];
+    expect(url).toBe("http://api.test/api/updates/apply/status");
+    expect(options.credentials).toBe("include");
+    expect(result).toEqual({ status: "updating", stage: "redeploy", runId: "r1" });
   });
 });

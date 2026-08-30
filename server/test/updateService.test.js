@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 // which doesn't exist outside the Docker image) — falls back to
 // "0.0.0" here, which is exactly what we want: every mocked release
 // below should read as newer than that.
-const { checkForUpdate, applyUpdate, RUNNING_VERSION } = await import("../src/services/updateService.js");
+const { checkForUpdate, applyUpdate, getApplyStatus, RUNNING_VERSION } = await import("../src/services/updateService.js");
 
 function mockGithubRelease(tagName) {
   return vi.fn().mockResolvedValue({
@@ -67,5 +67,21 @@ describe("updateService", () => {
   it("applyUpdate throws with the updater's error message on failure", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 500, json: async () => ({ error: "git pull failed" }) }));
     await expect(applyUpdate()).rejects.toThrow("git pull failed");
+  });
+
+  it("applyUpdate's thrown error carries the updater's HTTP status (so the route can pass a 409 through distinctly)", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 409, json: async () => ({ error: "update already in progress" }) }));
+    await expect(applyUpdate()).rejects.toMatchObject({ status: 409, message: "update already in progress" });
+  });
+
+  it("getApplyStatus passes the updater's progress state straight through", async () => {
+    const state = { status: "updating", stage: "redeploy", runId: "r1" };
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => state }));
+    await expect(getApplyStatus()).resolves.toEqual(state);
+  });
+
+  it("getApplyStatus throws when the updater is unreachable", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 503 }));
+    await expect(getApplyStatus()).rejects.toThrow("503");
   });
 });

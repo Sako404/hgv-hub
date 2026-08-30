@@ -133,22 +133,55 @@ the real one on host ports rather than updating it. Set
 `COMPOSE_PROJECT_NAME=ix-<app_name>` (e.g. `ix-hgv-hub`) to fix this —
 found and fixed after exactly this happened on a real deployment.
 
-**Known limitation: self-update can briefly crash a Custom App
-deployment.** TrueNAS SCALE actively supervises the containers behind
-a Custom App. When the `updater` sidecar runs `docker compose build &&
-docker compose up -d` directly against them, TrueNAS's own supervisor
-can fight it — killing the containers the updater just started/is
-starting, leaving them stuck `Created`/`CRASHED` instead of running.
-Postgres is never affected (its container isn't rebuilt on a source-only
-release, so nothing touches it), so no data is at risk, but the app
-itself needs a nudge to come back: **Apps → hgv-hub → Start** (or
-`midclt call app.start '"hgv-hub"'`). Confirmed live: after that one
-restart, the app came up correctly on the new version with the images
-the updater had already finished building. A proper fix would have the
-`updater` call `midclt call app.update` instead of raw `docker
-compose` on Custom App deployments — not implemented; the raw-compose
-path is what exists today, so budget for occasionally doing this one
-manual step after clicking "Update now" on a TrueNAS Custom App.
+**Resolved, 2026-08-30: self-update no longer races TrueNAS's own
+supervisor.** This used to be a known limitation — the `updater`
+sidecar ran `docker compose build && docker compose up -d` directly,
+and TrueNAS's own supervisor could fight it, briefly leaving the app
+stuck `Created`/`CRASHED` until a manual **Apps → hgv-hub → Start**.
+Fixed by splitting responsibilities: the `updater` still does
+`git checkout` + `docker compose build` locally (build never touches a
+running container — it only creates/retags an image), but the actual
+`up`/`down`/recreate step is now always performed by TrueNAS's own
+`midclt call app.redeploy` instead, invoked via a dedicated, tightly
+scoped SSH forced command on the TrueNAS host (see
+`deploy/truenas/README.md` for the one-time setup this needs — a
+dedicated keypair, an `authorized_keys` forced command, and a
+persistent state directory under `/mnt/<POOL>/hgv-hub-updater/`).
+TrueNAS's own middleware is now the sole owner of the app's container
+lifecycle in every case — a self-update, a manual `app.stop`/`app.start`,
+a `docker.backup_to_pool` cycle, or a host reboot all go through
+exactly the same path, so nothing outside TrueNAS's own bookkeeping can
+leave it out of sync with what's actually running.
+
+Since `app.redeploy` recreates *every* container in the app, including
+`updater` itself, the sidecar can't wait for the redeploy's own result —
+that would mean waiting on an action that kills the waiter. The forced
+command instead confirms only that a **detached, host-side worker**
+has taken over (a few seconds), then that worker independently calls
+`app.redeploy`, polls it to completion, and health-checks the new
+version — all as a plain host process, immune to the container churn
+it's causing. Its progress is written to a state file the (possibly
+already-recreated) `updater` container reads read-only, so
+`GET /api/updates/apply/status` (polled by the "Update now" banner)
+keeps reporting accurately across the whole cycle. If the build itself
+fails, or the handoff to that worker isn't cleanly confirmed, the
+`updater` restores every locally-built image tag to its pre-build ID
+(verified, never guessed) and reverts the git checkout — the running
+app and the next redeploy both stay on the previous, known-good state
+without ever calling `app.redeploy` at all. Postgres's image is never
+touched by any of this (it isn't rebuilt on a source-only release).
+
+A failed post-redeploy health-check does **not** automatically roll the
+app back — the worker's state file records `previousRef`,
+`previousTag`, and every service's pre-update image ID specifically so
+a human can recover deterministically (re-run the same flow targeting
+`previousRef`), not so it happens silently.
+
+This mechanism is TrueNAS-specific — a plain generic Docker Compose
+self-hosting deployment (no `TRUENAS_SSH_HOST` set) keeps the original
+`docker compose up -d` path unchanged, including its own pre-existing
+behaviour of recreating the `updater` container as part of applying its
+own update.
 
 **Option B — plain `docker compose`, run once via `sudo`** from an
 interactive SSH session (a real terminal, so it can prompt for the
