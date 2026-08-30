@@ -9,7 +9,7 @@ FROM docker:27-cli
 # generic deployment (TRUENAS_SSH_HOST unset).
 RUN apk add --no-cache nodejs git openssh-client
 WORKDIR /updater
-COPY updater/src/index.js ./index.js
+COPY updater/src/ ./
 EXPOSE 4000
 # The docker:cli base image's own ENTRYPOINT wraps its CMD as
 # arguments to the `docker` binary itself (so a bare `node` CMD gets
