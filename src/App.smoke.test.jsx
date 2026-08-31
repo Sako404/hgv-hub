@@ -230,6 +230,19 @@ describe("AppShell — driver experience", () => {
 
     // Only one vehicle available -> auto-selected.
     expect(screen.getByLabelText("Vehicle")).toHaveProperty("value", vehicle.id);
+    // TEMPORARY CI DIAGNOSTIC — remove once the CI-only failure is understood.
+    if (!screen.queryByText("Tyres")) {
+      const tpls = await db.checklistTemplates.query({ where: { workspaceId: "workspace-demo-agency" } });
+      const vehs = await db.vehicles.query({ where: { workspaceId: "workspace-demo-agency" } });
+      // eslint-disable-next-line no-console
+      console.log("VC2-DIAG", JSON.stringify({
+        templates: tpls.map((t) => ({ id: t.id, name: t.name, isDefault: t.isDefault, items: (t.items || []).length })),
+        expectedTemplateId: template.id,
+        vehicles: vehs.map((v) => ({ id: v.id, reg: v.registration })),
+        vehicleSelectValue: screen.getByLabelText("Vehicle").value,
+        mainText: mainContent().textContent.replace(/\s+/g, " ").slice(0, 700),
+      }));
+    }
     expect(screen.getByText("Tyres")).toBeInTheDocument();
     expect(screen.getByText("Lights")).toBeInTheDocument();
     expect(screen.getByText("Save Check")).toBeDisabled();
