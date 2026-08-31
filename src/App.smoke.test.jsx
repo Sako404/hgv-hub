@@ -76,8 +76,17 @@ describe("AppShell — driver experience", () => {
     window.localStorage.clear();
     await resetIndexedDb();
   });
-  afterEach(() => {
+  afterEach(async () => {
     cleanup();
+    // cleanup() unmounts synchronously, but IndexedDB work started by the
+    // unmounted tree is still in flight — the connection is memoized and
+    // shared by every test in this file. Awaiting a readwrite transaction
+    // over all stores is a real barrier, not a sleep: IndexedDB serialises
+    // overlapping readwrite transactions, so this cannot begin until the
+    // previous test's operations have finished. Without it, a slow enough
+    // machine lets one test's pending writes land during the next test's
+    // setup, which is exactly what failed on CI while passing locally.
+    await resetIndexedDb();
   });
 
   it("boots straight into the driver sidebar for Alex, with no workspace switcher", async () => {
@@ -761,8 +770,17 @@ describe("AppShell — sidebar collapse and mobile drawer", () => {
     window.localStorage.clear();
     await resetIndexedDb();
   });
-  afterEach(() => {
+  afterEach(async () => {
     cleanup();
+    // cleanup() unmounts synchronously, but IndexedDB work started by the
+    // unmounted tree is still in flight — the connection is memoized and
+    // shared by every test in this file. Awaiting a readwrite transaction
+    // over all stores is a real barrier, not a sleep: IndexedDB serialises
+    // overlapping readwrite transactions, so this cannot begin until the
+    // previous test's operations have finished. Without it, a slow enough
+    // machine lets one test's pending writes land during the next test's
+    // setup, which is exactly what failed on CI while passing locally.
+    await resetIndexedDb();
   });
 
   it("toggles collapsed state and persists it to localStorage", async () => {
@@ -814,8 +832,17 @@ describe("AppShell — company experience and workspace switching", () => {
     window.localStorage.clear();
     await resetIndexedDb();
   });
-  afterEach(() => {
+  afterEach(async () => {
     cleanup();
+    // cleanup() unmounts synchronously, but IndexedDB work started by the
+    // unmounted tree is still in flight — the connection is memoized and
+    // shared by every test in this file. Awaiting a readwrite transaction
+    // over all stores is a real barrier, not a sleep: IndexedDB serialises
+    // overlapping readwrite transactions, so this cannot begin until the
+    // previous test's operations have finished. Without it, a slow enough
+    // machine lets one test's pending writes land during the next test's
+    // setup, which is exactly what failed on CI while passing locally.
+    await resetIndexedDb();
   });
 
   it("shows the workspace switcher only for a manager-tier person, and switches nav + content", async () => {
