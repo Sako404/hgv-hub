@@ -147,3 +147,45 @@ See `docs/ARCHITECTURE.md` for the full list — notably: fleet
 management beyond identity/roadworthiness, jobs/loads marketplace,
 invoicing/billing, real payroll integration, rota/timesheet approval,
 and CSV/PDF export.
+
+## Scope and limitations
+
+HGV HUB **models** the rules its workflows need — working time, driving and
+rest concepts, vehicle checks and defects, document expiry, the CPC training
+cycle, and Transport Manager–oriented information informed by the Senior
+Traffic Commissioner's Statutory Document No. 3.
+
+It is **not** certified compliance software. It does not replace a tachograph,
+an operator's own record-keeping obligations, or professional legal, payroll or
+transport-management advice. Results depend entirely on what you enter.
+
+There is no hosted public service. Run it locally, or self-host it.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). The short version: tests and build must
+pass, and **all fixtures, seeds, examples and documentation must use synthetic
+data** — never real employer, driver, client, pay or scheduling information.
+
+## Project identity
+
+Official upstream: <https://github.com/Sako404/hgv-hub>
+
+Forks are welcome under the licence. See [TRADEMARKS.md](TRADEMARKS.md) for the
+one thing this project asks of them: don't present a fork as the official
+HGV HUB.
+
+## Licence
+
+Copyright (C) 2026 Marcin Sakowski.
+
+Licensed under the **GNU Affero General Public License, version 3 or later**
+(AGPL-3.0-or-later). See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+Because of AGPL section 13: if you modify HGV HUB and let others use it over a
+network, you must offer them the source of your modified version.
+
+**Licence history.** Releases up to and including v0.3.19 were published under
+the MIT licence. From v0.4.0 onward the project is AGPL-3.0-or-later. This
+changes the terms for new releases only — it does not revoke the MIT rights
+already granted for those earlier releases.
