@@ -469,6 +469,16 @@ describe("AppShell — driver experience", () => {
 
     await user.click(within(nav).getByText("New Check"));
     await screen.findByRole("heading", { name: "New Vehicle Check" });
+    // TEMPORARY CI DIAGNOSTIC — remove once understood.
+    if (!screen.queryByText("Walk around the vehicle")) {
+      const tpls = await db.checklistTemplates.query({ where: { workspaceId: wsId } });
+      // eslint-disable-next-line no-console
+      console.log("SOLO-DIAG", JSON.stringify({
+        templates: tpls.map((t) => ({ name: t.name, isDefault: t.isDefault,
+          items: (t.items || []).map((i) => ({ label: i.label, category: i.category })) })),
+        mainText: mainContent().textContent.replace(/\s+/g, " ").slice(0, 500),
+      }));
+    }
     expect(screen.getByText("Walk around the vehicle")).toBeInTheDocument();
     await user.click(screen.getByText("OK"));
     await user.type(screen.getByLabelText("Your name (sign-off)"), "Solo VC Driver");
