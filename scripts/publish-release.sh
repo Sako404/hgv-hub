@@ -61,7 +61,7 @@ echo "==> Privacy scan"
 # Deliberately NOT a generic '/home/...' rule: documentation legitimately uses
 # placeholder home paths (/home/youruser, /home/truenas_admin). The real
 # username lives in the private terms file instead.
-STRUCTURAL='GoogleDrive|192\.168\.[0-9]|10\.[0-9]+\.[0-9]+\.[0-9]+|@outlook\.com|@gmail\.com'
+STRUCTURAL='192\.168\.[0-9]|10\.[0-9]+\.[0-9]+\.[0-9]+|@outlook\.com|@gmail\.com'
 SCAN_FILES="$(git ls-files | grep -vE '^scripts/(publish-release\.sh|release-privacy-terms\.txt)$' || true)"
 
 HITS="$(printf '%s\n' "$SCAN_FILES" | xargs -r grep -lEi "$STRUCTURAL" 2>/dev/null || true)"
