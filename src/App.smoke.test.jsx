@@ -230,7 +230,12 @@ describe("AppShell — driver experience", () => {
 
     // Only one vehicle available -> auto-selected.
     expect(screen.getByLabelText("Vehicle")).toHaveProperty("value", vehicle.id);
-    expect(screen.getByText("Tyres")).toBeInTheDocument();
+    // findBy, not getBy: the "New Vehicle Check" heading renders as soon as the
+    // page mounts, but the checklist items arrive from an async IndexedDB read a
+    // tick later. A synchronous query here only passed because a fast machine had
+    // already resolved that read — it asserts the same thing, it just waits for
+    // the load the test always depended on.
+    expect(await screen.findByText("Tyres")).toBeInTheDocument();
     expect(screen.getByText("Lights")).toBeInTheDocument();
     expect(screen.getByText("Save Check")).toBeDisabled();
 
@@ -456,7 +461,9 @@ describe("AppShell — driver experience", () => {
 
     await user.click(within(nav).getByText("New Check"));
     await screen.findByRole("heading", { name: "New Vehicle Check" });
-    expect(screen.getByText("Walk around the vehicle")).toBeInTheDocument();
+    // findBy for the same reason as the VC-2 flow above: checklist items load
+    // asynchronously after the heading renders.
+    expect(await screen.findByText("Walk around the vehicle")).toBeInTheDocument();
     await user.click(screen.getByText("OK"));
     await user.type(screen.getByLabelText("Your name (sign-off)"), "Solo VC Driver");
     await user.click(screen.getByText("Save Check"));
